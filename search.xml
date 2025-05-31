@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/2025/05/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="欢迎来到我的博客"><a href="#欢迎来到我的博客" class="headerlink" title="欢迎来到我的博客"></a>欢迎来到我的博客</h2><p>这是我使用Hexo搭建的第一篇博客文章。Hexo是一个快速、简洁且高效的博客框架，使用Markdown编写文章，可以方便地生成静态网页。</p>
+<p>为什么选择Hexo</p>
+<ul>
+<li><strong>简单高效</strong>：Hexo基于Node.js，安装和使用都非常简单</li>
+<li><strong>Markdown支持</strong>：可以使用Markdown语法编写文章</li>
+<li><strong>丰富的插件</strong>：有大量的插件和主题可供选择</li>
+<li><strong>部署方便</strong>：可以轻松部署到GitHub Pages等平台</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello, Hexo!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sayHello</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="未来计划"><a href="#未来计划" class="headerlink" title="未来计划"></a>未来计划</h3><ol>
+<li>学习更多关于Hexo的知识</li>
+<li>定期更新博客内容</li>
+<li>尝试不同的Hexo主题</li>
+<li>分享更多技术心得</li>
+</ol>
+<p>感谢访问我的博客，希望能够分享更多有价值的内容！</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>青春三行诗摘抄</title>
+    <url>/2025/05/29/%E9%9D%92%E6%98%A5%E4%B8%89%E8%A1%8C%E8%AF%97%E6%91%98%E6%8A%84/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>青春是一首永远写不完的诗，每个人都在用自己的方式诠释着这个美好而短暂的时光。今天分享一些关于青春的三行诗摘抄，这些简短而深刻的文字，或许能唤起我们内心深处关于青春的记忆与感悟。</p>
+<span id="more"></span>
+
+<h2 id="毕业季的思考"><a href="#毕业季的思考" class="headerlink" title="毕业季的思考"></a>毕业季的思考</h2><h3 id="《毕设答辩》"><a href="#《毕设答辩》" class="headerlink" title="《毕设答辩》"></a>《毕设答辩》</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ctrl+C的文献在胃里发酵</span><br><span class="line">导师推了推眼镜框</span><br><span class="line">&quot;同学，你的人生需要降低查重率&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这首诗用幽默而深刻的方式描绘了毕业生的焦虑与困惑。”Ctrl+C的文献”暗示了学术写作中的复制粘贴，而”在胃里发酵”则形象地表达了内心的不安。导师的话”人生需要降低查重率”更是一语双关，既是对学术诚信的要求，也是对人生原创性的思考。</p>
+<h3 id="《成全》"><a href="#《成全》" class="headerlink" title="《成全》"></a>《成全》</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我向唐僧化缘白马一匹</span><br><span class="line">与红楼兑换大观园的门票一张</span><br><span class="line">文学多慷慨不像你</span><br></pre></td></tr></table></figure>
+
+<p>这首诗通过文学典故的巧妙运用，表达了对文学世界的向往。唐僧的白马、红楼梦的大观园，都是文学中的经典意象。最后一句”文学多慷慨不像你”形成强烈对比，暗示现实世界的冷漠与文学世界的温暖。</p>
+<h2 id="青春的远行"><a href="#青春的远行" class="headerlink" title="青春的远行"></a>青春的远行</h2><h3 id="《远行》"><a href="#《远行》" class="headerlink" title="《远行》"></a>《远行》</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">夏季高考，远行却在秋天</span><br><span class="line">车轨像一排排拉链</span><br><span class="line">我坐在火车上拉开整个世界</span><br></pre></td></tr></table></figure>
+
+<p>这首诗描绘了青春时期的重要转折点——高考后的远行。”夏季高考，远行却在秋天”点出了时间的错位感，而”车轨像一排排拉链”这个比喻新颖独特，”拉开整个世界”则表达了年轻人对未来的憧憬和探索欲望。</p>
+<h2 id="成长的代价"><a href="#成长的代价" class="headerlink" title="成长的代价"></a>成长的代价</h2><h3 id="《毕业后的生活》"><a href="#《毕业后的生活》" class="headerlink" title="《毕业后的生活》"></a>《毕业后的生活》</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我们被丢进各种高楼大厦里</span><br><span class="line">青春被封印在了工资条</span><br><span class="line">梦醒了，生活开始了</span><br></pre></td></tr></table></figure>
+
+<p>这首诗深刻地反映了从校园到职场的转变。”被丢进各种高楼大厦里”暗示了身不由己的现实，”青春被封印在了工资条”则用”封印”这个词形象地表达了理想与现实的冲突。最后一句”梦醒了，生活开始了”既是无奈，也是成长的必经之路。</p>
+<h3 id="《无题》"><a href="#《无题》" class="headerlink" title="《无题》"></a>《无题》</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我被判处不许流泪</span><br><span class="line">于是我的双眼</span><br><span class="line">涌出诗和墨水</span><br></pre></td></tr></table></figure>
+
+<p>这首诗用”被判处”这样的法律用语，表达了成长过程中被迫坚强的无奈。但诗人并没有停留在悲伤中，而是将眼泪转化为”诗和墨水”，这种转化体现了文学创作的力量和意义。</p>
+<h2 id="感悟与思考"><a href="#感悟与思考" class="headerlink" title="感悟与思考"></a>感悟与思考</h2><p>这些三行诗虽然篇幅短小，但每一首都蕴含着深刻的人生感悟。它们用简洁的语言捕捉了青春时期的复杂情感：</p>
+<ul>
+<li><strong>学业压力与成长困惑</strong>：从毕业论文的焦虑到人生方向的迷茫</li>
+<li><strong>理想与现实的冲突</strong>：从文学世界的美好到现实生活的残酷</li>
+<li><strong>时间流逝与人生转折</strong>：从高考到就业，每个节点都是成长的印记</li>
+<li><strong>情感的转化与升华</strong>：将痛苦转化为创作的动力</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>青春是一段充满矛盾的时光，既有对未来的无限憧憬，也有对现实的深深无奈。这些三行诗用最简洁的语言，记录了这个特殊时期的真实感受。</p>
+<p>或许每个人的青春都有着相似的困惑和感动，而诗歌正是我们表达这些复杂情感的最好方式。愿我们都能在文字中找到共鸣，在诗歌中获得慰藉。</p>
+<hr>
+<p><em>注：以上诗歌均为摘抄内容，感谢原作者的精彩创作。</em></p>
+]]></content>
+      <categories>
+        <category>文学分享</category>
+      </categories>
+      <tags>
+        <tag>诗歌</tag>
+        <tag>青春</tag>
+        <tag>文学</tag>
+        <tag>摘抄</tag>
+      </tags>
+  </entry>
+</search>
