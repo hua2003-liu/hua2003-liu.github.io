@@ -76,9 +76,6 @@
 <!-- GSAP 库 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-  <!-- 页面加载动画 - 需要在页面开始时就加载 -->
-  <script src="/js/page-loading-animation.js"></script>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -664,19 +661,28 @@ document.addEventListener('page:loaded', () => {
     function scrollToContent() {
       // 获取主要内容区域
       const mainContent = document.querySelector('.main');
+      let targetPosition;
+
       if (mainContent) {
-        // 平滑滚动到主要内容区域
-        mainContent.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // 计算主要内容区域的精确位置
+        const rect = mainContent.getBoundingClientRect();
+        targetPosition = window.scrollY + rect.top;
       } else {
         // 如果找不到主要内容，滚动到视口高度的位置
-        window.scrollTo({
-          top: window.innerHeight,
-          behavior: 'smooth'
-        });
+        targetPosition = window.innerHeight;
       }
+
+      // 使用 anime.js 实现更丝滑的滚动动画
+      window.anime({
+        targets: document.scrollingElement,
+        scrollTop: targetPosition,
+        duration: 1200, // 增加持续时间让动画更优雅
+        easing: 'easeOutCubic', // 使用三次贝塞尔缓动函数，开始快结束慢
+        complete: function() {
+          // 动画完成后的回调，可以添加其他效果
+          console.log('Scroll animation completed');
+        }
+      });
     }
   </script>
 
