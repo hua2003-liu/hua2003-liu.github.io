@@ -281,14 +281,22 @@ class PageLoadingAnimation {
 
   // 添加动画类名
   addAnimationClasses() {
-    // 为文章块添加动画
-    const postBlocks = document.querySelectorAll('.post-block');
-    postBlocks.forEach((block, index) => {
-      block.classList.add('content-fade-in');
-      if (index > 0) {
-        block.classList.add(`delay-${Math.min(index, 5)}`);
-      }
-    });
+    // 检查是否在首页，如果是首页则不给文章块添加动画类（让GSAP控制）
+    const isHomePage = document.body.classList.contains('home') ||
+                       document.querySelector('.index') !== null ||
+                       window.location.pathname === '/' ||
+                       window.location.pathname === '/index.html';
+
+    if (!isHomePage) {
+      // 只在非首页为文章块添加动画
+      const postBlocks = document.querySelectorAll('.post-block');
+      postBlocks.forEach((block, index) => {
+        block.classList.add('content-fade-in');
+        if (index > 0) {
+          block.classList.add(`delay-${Math.min(index, 5)}`);
+        }
+      });
+    }
 
     // 为侧边栏添加动画
     const sidebar = document.querySelector('.sidebar');

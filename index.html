@@ -734,13 +734,19 @@ document.addEventListener('page:loaded', () => {
 
       // 页面加载完成后初始化动画
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPostBlockAnimations);
+        document.addEventListener('DOMContentLoaded', () => {
+          // 等待页面加载动画完成后再初始化GSAP
+          setTimeout(initPostBlockAnimations, 1000);
+        });
       } else {
-        initPostBlockAnimations();
+        // 等待页面加载动画完成后再初始化GSAP
+        setTimeout(initPostBlockAnimations, 1000);
       }
 
-      // 延迟执行动画以确保内容加载完成
-      setTimeout(initPostBlockAnimations, 100);
+      // 监听页面加载动画完成事件
+      window.addEventListener('load', () => {
+        setTimeout(initPostBlockAnimations, 500);
+      });
     });
   </script>
 
