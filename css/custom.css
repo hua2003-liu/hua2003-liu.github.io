@@ -12,32 +12,32 @@
   --text: #e0e0e0;
 }
 
-/* 滚动条 - 悬停页面时显示 */
+/* 滚动条 - 默认隐藏，悬停页面时显示 */
+html {
+  overflow-y: overlay;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: transparent !important;
   border-radius: 4px;
-  transition: background 0.3s;
 }
 
 html:hover::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2) !important;
 }
 
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-
-[data-theme="dark"]:hover::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.2);
+html[data-theme="dark"]:hover::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2) !important;
 }
 
 /* 辅助类 */
