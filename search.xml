@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>我的第一篇技术文章</title>
+      <link href="/2026/04/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
+      <url>/2026/04/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是我的第一篇技术博客！今天我想分享一下学习 JavaScript 的一些心得。</p><h2 id="为什么学习-JavaScript？"><a href="#为什么学习-JavaScript？" class="headerlink" title="为什么学习 JavaScript？"></a>为什么学习 JavaScript？</h2><p>JavaScript 是 Web 开发的三大核心技术之一（HTML + CSS + JavaScript），几乎每个网站都在用它。</p><h3 id="主要用途："><a href="#主要用途：" class="headerlink" title="主要用途："></a>主要用途：</h3><ul><li><strong>前端交互</strong>：点击按钮、表单验证、动画效果</li><li><strong>后端开发</strong>：Node.js 让 JS 可以写服务器</li><li><strong>移动应用</strong>：React Native、Ionic</li><li><strong>桌面应用</strong>：Electron（VS Code 就是用它写的）</li></ul><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="1-第一个-JS-程序"><a href="#1-第一个-JS-程序" class="headerlink" title="1. 第一个 JS 程序"></a>1. 第一个 JS 程序</h3><p>打开浏览器控制台（F12），输入：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello, World!&quot;</span>);</span><br></pre></td></tr></table></figure><p>回车，你会看到输出了 <code>Hello, World!</code></p><h3 id="2-变量和数据类型"><a href="#2-变量和数据类型" class="headerlink" title="2. 变量和数据类型"></a>2. 变量和数据类型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">let</span> name = <span class="string">&quot;功华&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数字</span></span><br><span class="line"><span class="keyword">let</span> age = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 布尔值</span></span><br><span class="line"><span class="keyword">let</span> isStudent = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">let</span> hobbies = [<span class="string">&quot;编程&quot;</span>, <span class="string">&quot;阅读&quot;</span>, <span class="string">&quot;运动&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;功华&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">  <span class="attr">sayHi</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;你好！&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="3-函数"><a href="#3-函数" class="headerlink" title="3. 函数"></a>3. 函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传统写法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">greet</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;你好，&quot;</span> + name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 箭头函数（ES6）</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">greet2</span> = (<span class="params">name</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;你好，&quot;</span> + name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简写</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">greet3</span> = name =&gt; <span class="string">&quot;你好，&quot;</span> + name;</span><br></pre></td></tr></table></figure><h2 id="学习建议"><a href="#学习建议" class="headerlink" title="学习建议"></a>学习建议</h2><ol><li><strong>多动手</strong>：看 10 遍不如写 1 遍</li><li><strong>做项目</strong>：从简单的待办事项列表开始</li><li><strong>查文档</strong>：<a href="https://developer.mozilla.org/zh-CN/">MDN</a> 是最好的老师</li><li><strong>不要怕错</strong>：错误是最好的学习机会</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JavaScript 入门很简单，但精通需要持续练习。希望这篇文章对你有帮助！</p><hr><p><strong>参考资料：</strong></p><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">MDN JavaScript 教程</a></li><li><a href="https://www.runoob.com/js/js-tutorial.html">JavaScript 入门 - 菜鸟教程</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> 前端 </tag>
+            
+            <tag> 入门 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《平凡的世界》书摘 - 那些触动心灵的句子</title>
+      <link href="/2025/11/04/pingfan-de-shijie-shuzhai-1/"/>
+      <url>/2025/11/04/pingfan-de-shijie-shuzhai-1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="关于平凡"><a href="#关于平凡" class="headerlink" title="关于平凡"></a>关于平凡</h2><blockquote><p>在我们亲爱的大地上，有多少朴素的花朵默默地开放在荒山野地里。这花朵没有人注目。也许唯有自身才怜爱自身的芬芳。</p></blockquote><h2 id="关于生活"><a href="#关于生活" class="headerlink" title="关于生活"></a>关于生活</h2><blockquote><p>生活包含着更广阔的意义，而不在于我们实际得到了什么；关键是我们的心灵是否充实。</p></blockquote><h2 id="读书感悟"><a href="#读书感悟" class="headerlink" title="读书感悟"></a>读书感悟</h2><p>这次重读《平凡的世界》，让我对生活有了新的理解。平凡不是平庸，而是在普通的生活中找到属于自己的意义。</p><p>就像书中所说，重要的不是我们得到了什么，而是我们的心灵是否充实。</p><hr><p><em>这是我在 2025 年 11 月重读这本书时的摘抄和感悟。</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 读书 </tag>
+            
+            <tag> 书摘 </tag>
+            
+            <tag> 感悟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
