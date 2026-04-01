@@ -12,17 +12,6 @@
   --text: #e0e0e0;
 }
 
-/* 首页背景 */
-#page-header {
-  background: url('/img/bg.png') center/cover;
-  min-height: 100vh;
-}
-
-/* 响应式 */
-@media (max-width: 768px) {
-  #page-header { background-position: top; }
-}
-
 /* 辅助类 */
 .shadow { box-shadow: var(--shadow); }
 .rounded { border-radius: var(--radius); }
