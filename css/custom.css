@@ -12,7 +12,7 @@
   --text: #e0e0e0;
 }
 
-/* 滚动条 - 滚动时显示 */
+/* 滚动条 - 悬停页面时显示 */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -25,13 +25,18 @@
 ::-webkit-scrollbar-thumb {
   background: transparent;
   border-radius: 4px;
+  transition: background 0.3s;
 }
 
-body:hover::-webkit-scrollbar-thumb {
+html:hover::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.2);
 }
 
-[data-theme="dark"] body:hover::-webkit-scrollbar-thumb {
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+[data-theme="dark"]:hover::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.2);
 }
 
