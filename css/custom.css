@@ -1,13 +1,30 @@
-/* 自定义首页背景图 */
+/* 主题变量 */
+:root {
+  --primary: #49b1f5;
+  --bg: #f5f5f5;
+  --text: #363636;
+  --radius: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #e0e0e0;
+}
+
+/* 首页背景 */
 #page-header {
-  background: url('/img/bg.png') no-repeat center center;
-  background-size: cover;
+  background: url('/img/bg.png') center/cover;
   min-height: 100vh;
 }
 
-/* 确保背景图在移动端也正常显示 */
-@media screen and (max-width: 768px) {
-  #page-header {
-    background-position: center top;
-  }
+/* 响应式 */
+@media (max-width: 768px) {
+  #page-header { background-position: top; }
 }
+
+/* 辅助类 */
+.shadow { box-shadow: var(--shadow); }
+.rounded { border-radius: var(--radius); }
+.mt-2 { margin-top: 0.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
