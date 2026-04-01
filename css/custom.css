@@ -12,6 +12,29 @@
   --text: #e0e0e0;
 }
 
+/* 滚动条 - 滚动时显示 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+}
+
+[data-theme="dark"] body:hover::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+}
+
 /* 辅助类 */
 .shadow { box-shadow: var(--shadow); }
 .rounded { border-radius: var(--radius); }
