@@ -1,0 +1,13 @@
+/* 自定义首页背景图 */
+#page-header {
+  background: url('/img/bg.png') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* 确保背景图在移动端也正常显示 */
+@media screen and (max-width: 768px) {
+  #page-header {
+    background-position: center top;
+  }
+}
