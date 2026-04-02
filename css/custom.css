@@ -17,26 +17,3 @@
 .rounded { border-radius: var(--radius); }
 .mt-2 { margin-top: 0.5rem; }
 .mb-2 { margin-bottom: 0.5rem; }
-
-/* 修复首页滚动条立即显示的问题 */
-#home {
-  overflow: hidden !important;
-  height: 100vh;
-}
-
-/* 确保首页内容不溢出 */
-#home .full_page {
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* 打字机副标题容器调整 */
-#home .subtitle-container {
-  max-height: 80vh;
-  overflow: hidden;
-}
-
-/* 滚动后才显示滚动条（可选，需要 JS 配合） */
-#home.scroll-ready {
-  overflow: auto !important;
-}
