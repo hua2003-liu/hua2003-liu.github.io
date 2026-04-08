@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>AI Agent 入门：Anthropic 官方指南笔记</title>
+      <link href="/2026/04/08/ai-agent-notes/"/>
+      <url>/2026/04/08/ai-agent-notes/</url>
+      
+        <content type="html"><![CDATA[<h1 id="AI-Agent-入门：Anthropic-官方指南笔记"><a href="#AI-Agent-入门：Anthropic-官方指南笔记" class="headerlink" title="AI Agent 入门：Anthropic 官方指南笔记"></a>AI Agent 入门：Anthropic 官方指南笔记</h1><p>花时间翻了 Anthropic 那篇《Building Effective Agents》，顺手整理成学习笔记。</p><p>核心观点其实就一句：<strong>大多数成功的 Agent 实现，用的都是简单可组合的模式，而不是复杂的框架。</strong></p><span id="more"></span><h2 id="1-Agent-的核心工作原理"><a href="#1-Agent-的核心工作原理" class="headerlink" title="1. Agent 的核心工作原理"></a>1. Agent 的核心工作原理</h2><p>先区分两个概念：</p><ul><li><strong>Workflows</strong>：通过预定义代码路径来编排 LLM 和工具，步骤是固定的</li><li><strong>Agents</strong>：LLM 动态决定执行流程，自己选择下一步用什么工具</li></ul><p>说白了，Agent 就是<strong>带工具调用的 LLM + 环境反馈循环</strong>。它不是魔法，原理很朴素：做事 → 看结果 → 决定下一步 → 继续。</p><p>用 Anthropic 的话来说，Agent 靠的是四个成熟的能力：理解复杂输入、主动推理、使用工具、从错误中恢复。</p><h2 id="2-五种工作流模式"><a href="#2-五种工作流模式" class="headerlink" title="2. 五种工作流模式"></a>2. 五种工作流模式</h2><p>Anthropic 总结了五种常见模式，按复杂度从低到高：</p><h3 id="Prompt-Chaining（链式调用）"><a href="#Prompt-Chaining（链式调用）" class="headerlink" title="Prompt Chaining（链式调用）"></a>Prompt Chaining（链式调用）</h3><p>把任务拆成顺序步骤，每步的输出是下一步的输入。适合”先做A，再用A的结果做B”这种场景。</p><p>比如：写文案大纲 → 检查大纲是否达标 → 写正文。</p><h3 id="Routing（路由）"><a href="#Routing（路由）" class="headerlink" title="Routing（路由）"></a>Routing（路由）</h3><p>先分类输入，再分发给专门的处理流程。核心价值是<strong>隔离不同类型的问题</strong>，避免互相干扰。</p><p>比如：客服问题分类 → 退款请求 &#x2F; 技术支持 &#x2F; 常规咨询走不同流程。</p><h3 id="Parallelization（并行化）"><a href="#Parallelization（并行化）" class="headerlink" title="Parallelization（并行化）"></a>Parallelization（并行化）</h3><p>两种形式：</p><ul><li><strong>Sectioning</strong>：拆成独立子任务同时跑，再合并结果</li><li><strong>Voting</strong>：同一个任务跑多遍，用投票决定最终输出</li></ul><p>适合需要多视角判断、或子任务相互独立的场景。比如代码安全审查，多个 prompt 各自挑刺，比一个 prompt 全面检查效果好得多。</p><h3 id="Orchestrator-Workers（编排器-工人）"><a href="#Orchestrator-Workers（编排器-工人）" class="headerlink" title="Orchestrator-Workers（编排器-工人）"></a>Orchestrator-Workers（编排器-工人）</h3><p>中心 LLM 动态拆解任务，分发给多个 Worker，再汇总结果。关键区别是<strong>子任务不是预定义的</strong>，而是由编排器根据输入决定的。</p><p>适合代码修改这类场景——每次要改哪些文件、改什么内容，输入不同结果就不同。</p><h3 id="Evaluator-Optimizer（评估-优化）"><a href="#Evaluator-Optimizer（评估-优化）" class="headerlink" title="Evaluator-Optimizer（评估-优化）"></a>Evaluator-Optimizer（评估-优化）</h3><p>一个 LLM 生成，另一个 LLM 评估，形成循环。适合有明确评估标准、迭代能带来可见提升的场景。</p><p>典型用法：翻译 + 评审 → 再翻译 → 再评审，直到达标。</p><h2 id="3-如何构建第一个-Agent"><a href="#3-如何构建第一个-Agent" class="headerlink" title="3. 如何构建第一个 Agent"></a>3. 如何构建第一个 Agent</h2><p>Anthropic 的建议很直接：<strong>从直接调用 LLM API 开始</strong>，很多模式用几行代码就能实现。</p><p>如果选框架（比如 LangGraph、LlamaIndex、CrewAI），确保你理解底层在做什么。框架会掩盖细节，出问题时排查困难。</p><p>实践建议：</p><ol><li>先想清楚 Agent 要做什么、为什么需要它</li><li>从单一行为模式开始，不要一上来就多 Agent</li><li>明确输入输出，别让 Agent 自己猜</li><li>定义好停止条件（最大循环次数、超时等）</li></ol><h2 id="4-工具使用的原则"><a href="#4-工具使用的原则" class="headerlink" title="4. 工具使用的原则"></a>4. 工具使用的原则</h2><p>Anthropic 提了一个有意思的概念：<strong>ACI（Agent-Computer Interface）</strong>，对标传统的 HCI。</p><p>工具设计建议：</p><ul><li>参数命名要自解释，想象是在给新人写文档</li><li>给足够的 token 空间让模型”思考”，别让它写到一半被卡住</li><li>格式尽量贴近模型在互联网上见过的自然形式</li><li>用真实输入测试，观察模型会犯什么错，然后改进</li></ul><p>Anthropic 在开发 SWE-bench 编码 Agent 时，花在优化工具上的时间比优化整体 prompt 还多。</p><h2 id="5-记忆机制"><a href="#5-记忆机制" class="headerlink" title="5. 记忆机制"></a>5. 记忆机制</h2><p>Agent 需要从环境反馈中学习进度，这是”记忆”的核心：不是记住历史，而是<strong>实时获取当前状态</strong>。</p><p>实践中需要注意：</p><ul><li>每次工具调用后获取结果，作为下一步判断的依据</li><li>设置检查点，必要时暂停等人类反馈</li><li>控制 token 消耗，避免上下文膨胀</li></ul><h2 id="6-测试驱动"><a href="#6-测试驱动" class="headerlink" title="6. 测试驱动"></a>6. 测试驱动</h2><p>Agent 的不确定性意味着测试格外重要：</p><ul><li><strong>沙盒环境</strong>：先在隔离环境跑，观察行为</li><li><strong>可验证输出</strong>：比如代码任务有自动化测试，客服任务有明确解决标准</li><li><strong>边界条件</strong>：测试工具在边界情况下的表现（空输入、异常格式等）</li></ul><p>Anthropic 的建议是：不要只测 Prompt，<strong>工具本身也需要用真实输入反复测试迭代</strong>。</p><h2 id="7-多-Agent-何时需要"><a href="#7-多-Agent-何时需要" class="headerlink" title="7. 多 Agent 何时需要"></a>7. 多 Agent 何时需要</h2><p>当单 Agent 出现以下问题时，考虑拆分：</p><ul><li>任务类型差异大，一个 Prompt 难以兼顾</li><li>某个子任务变得复杂且独立，值得单独管理</li><li>需要并行处理不同类型的请求</li></ul><p>但也要注意：多 Agent 带来的是协调成本和更多不确定性。<strong>能用单 Agent 解决就别拆</strong>。</p><h2 id="8-核心结论"><a href="#8-核心结论" class="headerlink" title="8. 核心结论"></a>8. 核心结论</h2><p>Anthropic 的三个核心原则：</p><ol><li><strong>保持简单</strong> —— 设计复杂不等于效果好</li><li><strong>透明可见</strong> —— 明确展示 Agent 的推理步骤</li><li><strong>ACI 优先</strong> —— 像重视人机交互一样重视 Agent 与工具的接口</li></ol><p>最后一句话值得记住：</p><blockquote><p>构建正确的系统，而不是最复杂的系统。</p></blockquote><hr><p><strong>参考来源</strong></p><ul><li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents - Anthropic</a></li><li><a href="https://x.com/hooeem/status/2037250422403113188">hooeem @ X (原推文)</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Agent </tag>
+            
+            <tag> Claude </tag>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN</title>
       <link href="/2026/04/02/network-protocols/"/>
       <url>/2026/04/02/network-protocols/</url>
