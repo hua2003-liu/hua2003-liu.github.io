@@ -1,0 +1,508 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评 | hua2003-liuの博客</title><meta name="author" content="hua2003-liu"><meta name="copyright" content="hua2003-liu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AI Agent 江湖正在快速分化。Anthropic 官方下场托管，Nous Research 开源自进化引擎，OpenClaw 主打网关生态——三条路线各有取舍。本文从技术架构、记忆系统、技能系统、平台接入、安全模型六个维度横向对比，帮你在真实场景中做出选型判断。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评">
+<meta property="og:url" content="https://hua2003-liu.github.io/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/index.html">
+<meta property="og:site_name" content="hua2003-liuの博客">
+<meta property="og:description" content="AI Agent 江湖正在快速分化。Anthropic 官方下场托管，Nous Research 开源自进化引擎，OpenClaw 主打网关生态——三条路线各有取舍。本文从技术架构、记忆系统、技能系统、平台接入、安全模型六个维度横向对比，帮你在真实场景中做出选型判断。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hua2003-liu.github.io/covers/cover-4k-dark.png">
+<meta property="article:published_time" content="2026-04-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-09T12:50:35.729Z">
+<meta property="article:author" content="hua2003-liu">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Claude">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Hermes">
+<meta property="article:tag" content="OpenClaw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hua2003-liu.github.io/covers/cover-4k-dark.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评",
+  "url": "https://hua2003-liu.github.io/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/",
+  "image": "https://hua2003-liu.github.io/covers/cover-4k-dark.png",
+  "datePublished": "2026-04-08T16:00:00.000Z",
+  "dateModified": "2026-04-09T12:50:35.729Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "hua2003-liu",
+      "url": "https://hua2003-liu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://hua2003-liu.github.io/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/say/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/covers/cover-4k-dark.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">hua2003-liuの博客</span></a><a class="nav-page-title" href="/"><span class="site-name">AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/say/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-09T12:50:35.729Z" title="更新于 2026-04-09 20:50:35">2026-04-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>AI Agent 江湖正在快速分化。Anthropic 官方下场托管，Nous Research 开源自进化引擎，OpenClaw 主打网关生态——三条路线各有取舍。本文从<strong>技术架构、记忆系统、技能系统、平台接入、安全模型</strong>六个维度横向对比，帮你在真实场景中做出选型判断。</p>
+<span id="more"></span>
+
+<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><ul>
+<li><strong>Claude Managed Agents</strong>：Anthropic 官方托管的 meta-harness，解耦 brain&#x2F;hands&#x2F;session，容器按需启动，TTFT p50 降低约 60%</li>
+<li><strong>Hermes Agent</strong>：Nous Research 开源，9000+ 行单核心引擎驱动所有入口，自进化记忆 + 自动创建技能，支持 18+ 模型</li>
+<li><strong>OpenClaw</strong>：开源自托管网关，Gateway 中心化架构，接入 15+ 聊天平台，ClawHub 技能生态</li>
+</ul>
+<hr>
+<h2 id="一、技术架构：三条不同的抽象路径"><a href="#一、技术架构：三条不同的抽象路径" class="headerlink" title="一、技术架构：三条不同的抽象路径"></a>一、技术架构：三条不同的抽象路径</h2><h3 id="Claude-Managed-Agents：OS-虚拟化思路"><a href="#Claude-Managed-Agents：OS-虚拟化思路" class="headerlink" title="Claude Managed Agents：OS 虚拟化思路"></a>Claude Managed Agents：OS 虚拟化思路</h3><p>Managed Agents 的核心洞察来自一个古老的计算问题：如何为”尚未想到的程序”设计系统。操作系统当年用进程和文件抽象解决了这个问题——<code>read()</code> 写死了 1970 年代的磁盘和今天的 SSD 都能用。Anthropic 沿用同一思路，把 Agent 的三个组件全部虚拟化：</p>
+<ul>
+<li><strong>Session（日志）</strong>：append-only 事件流，通过 <code>getEvents()</code> 按位置切片获取，支持 rewind 和 lookahead，完全处于 Claude 上下文窗口之外</li>
+<li><strong>Harness（大脑）</strong>：调用 Claude 并路由工具调用的循环，Stateless，崩溃后用 <code>wake(sessionId)</code> + <code>getSession(id)</code> 重启恢复</li>
+<li><strong>Sandbox（手）</strong>：容器化的执行环境，通过 <code>provision(&#123;resources&#125;)</code> 按需创建，通过 <code>execute(name, input) → string</code> 调用</li>
+</ul>
+<p>最初它们是”宠物”——全部塞进同一个容器，容器挂了会话就丢了。后来全部改成” cattle”：独立替换、独立失败、独立恢复。</p>
+<p><strong>关键性能数字</strong>：p50 TTFT 下降约 60%，p95 下降超过 90%。原因很简单——不需要沙箱的任务不再等容器启动，推理从第一条消息开始就能进行。</p>
+<h3 id="Hermes-Agent：单引擎多入口"><a href="#Hermes-Agent：单引擎多入口" class="headerlink" title="Hermes Agent：单引擎多入口"></a>Hermes Agent：单引擎多入口</h3><p>Hermes 的架构与 Claude MA 截然相反——一个约 9200 行的 <code>AIAgent</code> 类（<code>run_agent.py</code>）驱动所有入口：CLI、消息网关、ACP 编辑器集成、批处理 runner、API Server。所有这些共用同一个 Provider 解析器、同一个工具分发逻辑、同一个记忆系统。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CLI | Gateway | ACP | Batch Runner</span><br><span class="line">         ↓</span><br><span class="line">   AIAgent (run_agent.py)</span><br><span class="line">         ↓</span><br><span class="line"> PromptBuilder | Provider | ToolDispatch</span><br></pre></td></tr></table></figure>
+
+<p><strong>架构亮点：</strong></p>
+<ul>
+<li><strong>Frozen Snapshot 模式</strong>：系统提示词在会话启动时冻结，之后不会中途修改——这保证了 LLM 前缀缓存的稳定，不会出现缓存失效导致的性能抖动</li>
+<li><strong>可中断 API 调用</strong>：API 调用运行在后台线程，主线程监听 interrupt 事件；用户发 <code>/stop</code> 或新消息时立即放弃，无脏数据注入对话历史</li>
+<li><strong>三种 API 模式动态解析</strong>：<code>chat_completions</code>（OpenAI 兼容）、<code>codex_responses</code>（Responses API）、<code>anthropic_messages</code>（原生）</li>
+</ul>
+<h3 id="OpenClaw：Gateway-中心化架构"><a href="#OpenClaw：Gateway-中心化架构" class="headerlink" title="OpenClaw：Gateway 中心化架构"></a>OpenClaw：Gateway 中心化架构</h3><p>OpenClaw 架构围绕一个长期运行的 Gateway 进程展开。Gateway 是唯一打开 WhatsApp（Baileys）、Telegram（grammY）等频道会话的进程，CLI、Web UI、macOS&#x2F;iOS&#x2F;Android 节点都通过 WebSocket（默认 <code>ws://127.0.0.1:18789</code>）连接 Gateway。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Chat Apps + Plugins → Gateway → Runtime (pi-agent-core)</span><br><span class="line">                             → CLI</span><br><span class="line">                             → Web Control UI</span><br><span class="line">                             → macOS App</span><br><span class="line">                             → Mobile Nodes</span><br></pre></td></tr></table></figure>
+
+<p><strong>架构特点：</strong></p>
+<ul>
+<li>设备级配对：新设备需要显式审批，Gateway 颁发设备 token 后续自动重连</li>
+<li>心跳系统：默认每 30 分钟唤醒一次，检查 <code>HEARTBEAT.md</code>，实现主动行为</li>
+<li>TypeBox schema 定义的类型化 WebSocket API，请求&#x2F;响应&#x2F;事件三种消息类型</li>
+</ul>
+<h3 id="架构对比小结"><a href="#架构对比小结" class="headerlink" title="架构对比小结"></a>架构对比小结</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Claude MA</th>
+<th>Hermes</th>
+<th>OpenClaw</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>核心抽象</td>
+<td>Session &#x2F; Harness &#x2F; Sandbox</td>
+<td>单 AIAgent 类</td>
+<td>Gateway + Runtime</td>
+</tr>
+<tr>
+<td>架构哲学</td>
+<td>OS 虚拟化（pet→cattle）</td>
+<td>单引擎多入口</td>
+<td>分层网关</td>
+</tr>
+<tr>
+<td>Session 持久化</td>
+<td>外部事件流</td>
+<td>SQLite + FTS5</td>
+<td>Markdown 文件</td>
+</tr>
+<tr>
+<td>容器化</td>
+<td>原生托管，按需 provision</td>
+<td>Docker &#x2F; 多后端</td>
+<td>Docker 可选</td>
+</tr>
+<tr>
+<td>扩展方式</td>
+<td>多 Brain 多 Hand</td>
+<td>单引擎 + 平台适配器</td>
+<td>Gateway 插件</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、记忆系统：持久化的三种思路"><a href="#二、记忆系统：持久化的三种思路" class="headerlink" title="二、记忆系统：持久化的三种思路"></a>二、记忆系统：持久化的三种思路</h2><h3 id="Claude-Managed-Agents：Memory-Stores"><a href="#Claude-Managed-Agents：Memory-Stores" class="headerlink" title="Claude Managed Agents：Memory Stores"></a>Claude Managed Agents：Memory Stores</h3><p>处于 Research Preview 阶段，提供<strong>workspace 级别的持久记忆</strong>：</p>
+<ul>
+<li>每个 Session 最多 8 个 Memory Stores</li>
+<li>Agent 在任务开始时自动读取，任务完成时自动写入学到的东西</li>
+<li>工具：<code>memory_list</code>、<code>memory_search</code>、<code>memory_read</code>、<code>memory_write</code>、<code>memory_edit</code>、<code>memory_delete</code></li>
+<li>单条记忆上限 100KB（约 25K tokens）</li>
+<li>有不可变的版本历史，支持审计和回滚</li>
+<li>写入安全：<code>precondition: &#123;type: not_exists&#125;</code> 或 <code>content_sha256</code> 乐观并发</li>
+</ul>
+<h3 id="Hermes-Agent：两文件-会话搜索"><a href="#Hermes-Agent：两文件-会话搜索" class="headerlink" title="Hermes Agent：两文件 + 会话搜索"></a>Hermes Agent：两文件 + 会话搜索</h3><p>Hermes 的记忆系统最接近”笔记”的直觉：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>用途</th>
+<th>上限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MEMORY.md</code></td>
+<td>Agent 的个人笔记（环境事实、约定、踩坑记录）</td>
+<td>2,200 chars</td>
+</tr>
+<tr>
+<td><code>USER.md</code></td>
+<td>用户画像（偏好、沟通风格、身份）</td>
+<td>1,375 chars</td>
+</tr>
+</tbody></table>
+<p>两者在会话启动时作为<strong>冻结快照</strong>注入系统提示，之后不再修改（工具响应中看到的是实时状态）。改变只在磁盘持久化，下一次会话才生效。</p>
+<p><strong>自进化机制</strong>：Agent 被” nudge”（轻推）提醒应该更新记忆——发生在对话中发现环境事实、约定或工具踩坑时。记忆超过 80% 容量时，nudge 会提示 consolidation。</p>
+<p><strong>会话搜索</strong>：所有对话存入 SQLite（<code>~/.hermes/state.db</code>）+ FTS5 全文索引，可搜索历史并用 Gemini Flash 做摘要总结。无需把全部历史塞进上下文。</p>
+<p><strong>外部记忆插件</strong>：Honcho、OpenViking、Mem0、Hindsight 等 8 种，可与内置记忆系统叠加使用。</p>
+<h3 id="OpenClaw：渐进式记忆注入"><a href="#OpenClaw：渐进式记忆注入" class="headerlink" title="OpenClaw：渐进式记忆注入"></a>OpenClaw：渐进式记忆注入</h3><p>OpenClaw 的记忆更接近”档案室”：</p>
+<ul>
+<li><code>MEMORY.md</code>：长期事实和偏好，在每个 DM 会话开始时加载</li>
+<li><code>memory/YYYY-MM-DD.md</code>：每日append-only 日志，按需通过 memory 工具访问，不自动注入</li>
+<li><code>DREAMS.md</code>（实验性）：梦境日记， consolidation summaries 由 cron 定时运行，供人工审查</li>
+<li>自动记忆 flush：Compaction 之前会无声地提醒 Agent 把重要上下文写入记忆文件</li>
+</ul>
+<h3 id="记忆系统对比小结"><a href="#记忆系统对比小结" class="headerlink" title="记忆系统对比小结"></a>记忆系统对比小结</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Claude MA</th>
+<th>Hermes</th>
+<th>OpenClaw</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>持久记忆</td>
+<td>8 个 Memory Stores &#x2F; 会话</td>
+<td>MEMORY.md + USER.md</td>
+<td>MEMORY.md + memory&#x2F;</td>
+</tr>
+<tr>
+<td>总容量</td>
+<td>~25K tokens &#x2F; 条</td>
+<td>~1.3K tokens 总计</td>
+<td>按需加载</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>memory_search</td>
+<td>FTS5 + LLM 摘要</td>
+<td>混合搜索（向量 + 关键词）</td>
+</tr>
+<tr>
+<td>自进化</td>
+<td>显式 memory_write</td>
+<td>定期 nudge 触发</td>
+<td>手动 &#x2F; dreaming 实验</td>
+</tr>
+<tr>
+<td>外部插件</td>
+<td>—</td>
+<td>8 种（Honcho 等）</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、技能系统：按需加载的多种实现"><a href="#三、技能系统：按需加载的多种实现" class="headerlink" title="三、技能系统：按需加载的多种实现"></a>三、技能系统：按需加载的多种实现</h2><p>三个工具都使用 <code>SKILL.md</code> + YAML frontmatter 格式，但实现细节差异很大。</p>
+<h3 id="Claude-Managed-Agents：Attached-Skills"><a href="#Claude-Managed-Agents：Attached-Skills" class="headerlink" title="Claude Managed Agents：Attached Skills"></a>Claude Managed Agents：Attached Skills</h3><ul>
+<li>技能在 Agent 创建时通过 <code>skill_id</code> 附加，最多 20 个</li>
+<li>技能文件系统化，加载时只影响相关上下文（不相关不注入）</li>
+<li>Anthropic 提供预建技能：<code>xlsx</code>、<code>pdf</code>、<code>word</code>、<code>powerpoint</code></li>
+<li>不支持自动创建或条件激活</li>
+</ul>
+<h3 id="Hermes-Agent：渐进披露-条件激活"><a href="#Hermes-Agent：渐进披露-条件激活" class="headerlink" title="Hermes Agent：渐进披露 + 条件激活"></a>Hermes Agent：渐进披露 + 条件激活</h3><p>Hermes 的技能系统最精细，三级加载：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L0: skills_list()   → [&#123;name, description, category&#125;, ...]   (~3k tokens)</span><br><span class="line">L1: skill_view(name) → 完整内容 + 元数据</span><br><span class="line">L2: skill_view(name, path) → 指定引用文件</span><br></pre></td></tr></table></figure>
+
+<p><strong>条件激活</strong>（这是 Hermes 独有的）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">duckduckgo-search</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">hermes:</span></span><br><span class="line">    <span class="attr">fallback_for_toolsets:</span> [<span class="string">web</span>]   <span class="comment"># web 工具不可用时显示</span></span><br><span class="line">    <span class="attr">requires_toolsets:</span> [<span class="string">terminal</span>]   <span class="comment"># terminal 工具可用时显示</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>自动创建</strong>：当 Agent 完成复杂任务（5+ 工具调用）、找到错误修复路径、或被用户纠正时，会自动调用 <code>skill_manage</code> 工具创建技能。创建后跨会话持久化。</p>
+<h3 id="OpenClaw：紧凑列表-加载时过滤"><a href="#OpenClaw：紧凑列表-加载时过滤" class="headerlink" title="OpenClaw：紧凑列表 + 加载时过滤"></a>OpenClaw：紧凑列表 + 加载时过滤</h3><p>OpenClaw 不把技能全文注入每个提示，而是在上下文组装阶段注入<strong>紧凑 XML 列表</strong>（name + description + file path）。模型只有在决定需要某个技能时才用 <code>read</code> 工具按需读取 <code>SKILL.md</code>。</p>
+<ul>
+<li>每个技能约 97 chars 开销，基础开销（&gt;&#x3D;1 技能时）约 195 chars</li>
+<li>技能可声明加载条件：<code>requires.bins</code>、<code>requires.env</code>、<code>requires.config</code>、<code>os</code> 平台限制</li>
+<li>支持 per-agent allowlist 和 deny</li>
+</ul>
+<h3 id="技能市场"><a href="#技能市场" class="headerlink" title="技能市场"></a>技能市场</h3><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>市场</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude MA</td>
+<td>Anthropic 官方技能</td>
+</tr>
+<tr>
+<td>Hermes</td>
+<td>官方 + ClawHub + LobeHub + GitHub 官方技能 + Mintlify docs skills</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>ClawHub</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>安全提示</strong>：第三方技能可能包含恶意代码（提示注入、凭据盗取）。Cisco 研究员和 Snyk 安全审计在社区技能中发现过有意义的比例——安装前务必审查。</p>
+</blockquote>
+<hr>
+<h2 id="四、平台接入：聊天生态的覆盖差异"><a href="#四、平台接入：聊天生态的覆盖差异" class="headerlink" title="四、平台接入：聊天生态的覆盖差异"></a>四、平台接入：聊天生态的覆盖差异</h2><h3 id="Claude-Managed-Agents：API-优先"><a href="#Claude-Managed-Agents：API-优先" class="headerlink" title="Claude Managed Agents：API 优先"></a>Claude Managed Agents：API 优先</h3><p>不直接接入聊天平台，而是通过<strong>事件流</strong>（SSE + WebSocket）让你的应用接收 Claude 的响应、工具调用确认、状态变化等事件。</p>
+<ul>
+<li>通过 <code>user.tool_confirmation</code> 处理 always_ask 工具</li>
+<li>通过 <code>user.interrupt</code> 打断正在进行的任务</li>
+<li>多用户通过多 vault &#x2F; 多 session 管理</li>
+</ul>
+<h3 id="Hermes-Agent：15-种平台适配器"><a href="#Hermes-Agent：15-种平台适配器" class="headerlink" title="Hermes Agent：15 种平台适配器"></a>Hermes Agent：15 种平台适配器</h3><p>支持最多的聊天平台，每种都通过 Bot token + pairing 接入：</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>语音</th>
+<th>图片</th>
+<th>文件</th>
+<th>线程</th>
+<th>流式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Telegram</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Discord</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Slack</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>WhatsApp</td>
+<td>—</td>
+<td>✅</td>
+<td>✅</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Signal</td>
+<td>—</td>
+<td>✅</td>
+<td>✅</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>SMS</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>—</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><strong>安全模型</strong>：默认 DENY ALL（不在白名单或未配对的用户全部拒绝）。配对码 1 小时过期，有速率限制，密码学随机生成。</p>
+<h3 id="OpenClaw：Gateway-原生适配"><a href="#OpenClaw：Gateway-原生适配" class="headerlink" title="OpenClaw：Gateway 原生适配"></a>OpenClaw：Gateway 原生适配</h3><p>Gateway 直接持有各平台会话，同样通过 Bot token 或官方协议接入：</p>
+<ul>
+<li>官方：Discord、Slack、Telegram、WhatsApp、Signal、Matrix、Microsoft Teams、iMessage 等</li>
+<li>Bundled 插件：Matrix 扩展、Nostr、Twitch 等</li>
+<li><strong>跨频道路由</strong>：不同 Agent 可以按频道、联系人或群组配置</li>
+</ul>
+<hr>
+<h2 id="五、安全模型：从凭证管理到权限控制"><a href="#五、安全模型：从凭证管理到权限控制" class="headerlink" title="五、安全模型：从凭证管理到权限控制"></a>五、安全模型：从凭证管理到权限控制</h2><h3 id="Claude-Managed-Agents：Vault-隔离"><a href="#Claude-Managed-Agents：Vault-隔离" class="headerlink" title="Claude Managed Agents：Vault 隔离"></a>Claude Managed Agents：Vault 隔离</h3><p>凭证<strong>永远不到达沙箱</strong>，是三者中最严格的：</p>
+<ul>
+<li>Agent 定义只声明 MCP 服务器名称和 URL</li>
+<li>Session 创建时传入 <code>vault_ids</code></li>
+<li>MCP proxy 在运行时根据 URL 匹配 vault 中的凭证并注入</li>
+<li>凭证分为 <code>mcp_oauth</code>（支持自动刷新）和 static bearer 两种</li>
+<li>Secret 字段（token、refresh_token、client_secret）只在写入时返回，写入后不可读取</li>
+</ul>
+<p><strong>提示注入防御</strong>：结构化隔离——Git 的 access token 在沙箱初始化时绑定到 git remote，Agent 永远不接触 token；自定义 MCP 工具通过 dedicated proxy 访问 vault，harness 本身对凭证无感知。</p>
+<p><strong>权限策略</strong>：每个工具集可设置为 <code>always_allow</code>（自动执行）或 <code>always_ask</code>（暂停等待 <code>user.tool_confirmation</code>）。MCP 工具集默认为 <code>always_ask</code>。</p>
+<h3 id="Hermes-Agent：环境变量-记忆扫描"><a href="#Hermes-Agent：环境变量-记忆扫描" class="headerlink" title="Hermes Agent：环境变量 + 记忆扫描"></a>Hermes Agent：环境变量 + 记忆扫描</h3><ul>
+<li>API Key 通过环境变量或 <code>~/.hermes/env</code> 配置，不在代码或配置文件中明文存储</li>
+<li><strong>记忆注入扫描</strong>：检测 <code>MEMORY.md</code> 中是否包含提示注入、凭据外泄、SSH 后门等威胁模式，发现即拦截</li>
+</ul>
+<h3 id="OpenClaw：沙箱-绑定挂载防护"><a href="#OpenClaw：沙箱-绑定挂载防护" class="headerlink" title="OpenClaw：沙箱 + 绑定挂载防护"></a>OpenClaw：沙箱 + 绑定挂载防护</h3><ul>
+<li>Docker 容器提供隔离环境，可选开启沙箱</li>
+<li>危险的绑定挂载源（<code>docker.sock</code>、<code>/etc</code>、<code>/proc</code>、<code>/sys</code>）和敏感凭据目录（<code>~/.aws</code>、<code>~/.ssh</code>、<code>~/.gnupg</code>）被主动阻止</li>
+<li>Symlink-parent 逃脱是主要威胁向量</li>
+<li>Safety guardrail 在系统提示中仅为建议性保护，强制执行需配合工具策略和 exec 审批</li>
+</ul>
+<hr>
+<h2 id="六、上手指南：三行代码入门"><a href="#六、上手指南：三行代码入门" class="headerlink" title="六、上手指南：三行代码入门"></a>六、上手指南：三行代码入门</h2><h3 id="Claude-Managed-Agents"><a href="#Claude-Managed-Agents" class="headerlink" title="Claude Managed Agents"></a>Claude Managed Agents</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 CLI</span></span><br><span class="line">brew install anthropics/tap/ant</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 进入托管注册流程</span></span><br><span class="line">/claude-api managed-agents-onboarding</span><br></pre></td></tr></table></figure>
+
+<p>Anthropic 提供了官方 Skill（<code>claude-api</code>）用于在 Claude Code 中直接引导你完成托管注册、Agent 创建、Session 启动的全流程。</p>
+<h3 id="Hermes-Agent"><a href="#Hermes-Agent" class="headerlink" title="Hermes Agent"></a>Hermes Agent</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 一键安装</span></span><br><span class="line">curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 配置 API Key</span></span><br><span class="line">hermes config <span class="built_in">set</span> ANTHROPIC_API_KEY=sk-...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Telegram 接入</span></span><br><span class="line">hermes gateway setup</span><br><span class="line"><span class="comment"># → 选择 Telegram，输入 Bot Token</span></span><br><span class="line"><span class="comment"># → 设置 TELEGRAM_ALLOWED_USERS=你的用户ID（推荐）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="OpenClaw"><a href="#OpenClaw" class="headerlink" title="OpenClaw"></a>OpenClaw</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. Docker 部署</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/openclaw/openclaw &amp;&amp; <span class="built_in">cd</span> openclaw</span><br><span class="line">./scripts/docker/setup.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Telegram 接入</span></span><br><span class="line">openclaw channels add --channel telegram --token <span class="string">&quot;&lt;bot_token&gt;&quot;</span></span><br><span class="line">openclaw pairing approve telegram &lt;配对码&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 安装技能</span></span><br><span class="line">openclaw skills install &lt;skill-slug&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="七、选型建议"><a href="#七、选型建议" class="headerlink" title="七、选型建议"></a>七、选型建议</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>企业 &#x2F; 生产环境，长期任务</td>
+<td><strong>Claude Managed Agents</strong>（官方托管、Vault 安全、多 Agent 编排、Memory Stores）</td>
+</tr>
+<tr>
+<td>个人 &#x2F; 开源爱好者 &#x2F; 自进化需求</td>
+<td><strong>Hermes Agent</strong>（自动建技能、18+ 模型、FTS5 会话搜索、多 Profile 隔离）</td>
+</tr>
+<tr>
+<td>接聊天平台 &#x2F; 个人助手 &#x2F; 多频道</td>
+<td><strong>OpenClaw</strong>（Gateway 架构、15+ 平台、ClawHub 生态、零成本入门）</td>
+</tr>
+</tbody></table>
+<p>三条路线的共同趋势：都在用<strong>接口抽象代替硬编码</strong>，让 Agent 的各个组件可以独立演进。Anthropic 学的是 OS，Hermes 做的是单引擎多入口，OpenClaw 则把网关变成了可组合的插件系统。</p>
+<hr>
+<p><em>参考资料：</em></p>
+<ul>
+<li><em>[Anthropic Engineering] Scaling Managed Agents: Decoupling the brain from the hands</em></li>
+<li><em>[platform.claude.com] Managed Agents 官方文档</em></li>
+<li><em>[Nous Research] Hermes Agent GitHub &amp; 官方文档</em></li>
+<li><em>[OpenClaw] github.com&#x2F;openclaw&#x2F;openclaw &amp; docs.openclaw.ai</em></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hua2003-liu.github.io">hua2003-liu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hua2003-liu.github.io/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/">https://hua2003-liu.github.io/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hua2003-liu.github.io" target="_blank">hua2003-liuの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Agent/">Agent</a><a class="post-meta__tags" href="/tags/Claude/">Claude</a><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/Hermes/">Hermes</a><a class="post-meta__tags" href="/tags/OpenClaw/">OpenClaw</a></div><div class="post-share"><div class="social-share" data-image="/covers/cover-4k-dark.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/04/08/ai-agent-notes/" title="AI Agent 入门：Anthropic 官方指南笔记"><img class="cover" src="/covers/cover-sword-cold.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AI Agent 入门：Anthropic 官方指南笔记</div></div><div class="info-2"><div class="info-item-1">AI Agent 入门：Anthropic 官方指南笔记花时间翻了 Anthropic 那篇《Building Effective Agents》，顺手整理成学习笔记。 核心观点其实就一句：大多数成功的 Agent 实现，用的都是简单可组合的模式，而不是复杂的框架。   1. Agent 的核心工作原理先区分两个概念：  Workflows：通过预定义代码路径来编排 LLM 和工具，步骤是固定的 Agents：LLM 动态决定执行流程，自己选择下一步用什么工具  说白了，Agent 就是带工具调用的 LLM + 环境反馈循环。它不是魔法，原理很朴素：做事 → 看结果 → 决定下一步 → 继续。 用 Anthropic 的话来说，Agent 靠的是四个成熟的能力：理解复杂输入、主动推理、使用工具、从错误中恢复。 2. 五种工作流模式Anthropic 总结了五种常见模式，按复杂度从低到高： Prompt Chaining（链式调用）把任务拆成顺序步骤，每步的输出是下一步的输入。适合”先做A，再用A的结果做B”这种场景。 比如：写文案大纲 → 检查大纲是否达标 → 写正文。 Rout...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/08/ai-agent-notes/" title="AI Agent 入门：Anthropic 官方指南笔记"><img class="cover" src="/covers/cover-sword-cold.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-08</div><div class="info-item-2">AI Agent 入门：Anthropic 官方指南笔记</div></div><div class="info-2"><div class="info-item-1">AI Agent 入门：Anthropic 官方指南笔记花时间翻了 Anthropic 那篇《Building Effective Agents》，顺手整理成学习笔记。 核心观点其实就一句：大多数成功的 Agent 实现，用的都是简单可组合的模式，而不是复杂的框架。   1. Agent 的核心工作原理先区分两个概念：  Workflows：通过预定义代码路径来编排 LLM 和工具，步骤是固定的 Agents：LLM 动态决定执行流程，自己选择下一步用什么工具  说白了，Agent 就是带工具调用的 LLM + 环境反馈循环。它不是魔法，原理很朴素：做事 → 看结果 → 决定下一步 → 继续。 用 Anthropic 的话来说，Agent 靠的是四个成熟的能力：理解复杂输入、主动推理、使用工具、从错误中恢复。 2. 五种工作流模式Anthropic 总结了五种常见模式，按复杂度从低到高： Prompt Chaining（链式调用）把任务拆成顺序步骤，每步的输出是下一步的输入。适合”先做A，再用A的结果做B”这种场景。 比如：写文案大纲 → 检查大纲是否达标 → 写正文。 Rout...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">hua2003-liu</div><div class="author-info-description">分享编程学习心得、技术开发笔记和生活感悟。记录 JavaScript、Web 开发等技术学习内容。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TL-DR"><span class="toc-number">1.</span> <span class="toc-text">TL;DR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%EF%BC%9A%E4%B8%89%E6%9D%A1%E4%B8%8D%E5%90%8C%E7%9A%84%E6%8A%BD%E8%B1%A1%E8%B7%AF%E5%BE%84"><span class="toc-number">2.</span> <span class="toc-text">一、技术架构：三条不同的抽象路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Claude-Managed-Agents%EF%BC%9AOS-%E8%99%9A%E6%8B%9F%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-number">2.1.</span> <span class="toc-text">Claude Managed Agents：OS 虚拟化思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermes-Agent%EF%BC%9A%E5%8D%95%E5%BC%95%E6%93%8E%E5%A4%9A%E5%85%A5%E5%8F%A3"><span class="toc-number">2.2.</span> <span class="toc-text">Hermes Agent：单引擎多入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenClaw%EF%BC%9AGateway-%E4%B8%AD%E5%BF%83%E5%8C%96%E6%9E%B6%E6%9E%84"><span class="toc-number">2.3.</span> <span class="toc-text">OpenClaw：Gateway 中心化架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%AF%B9%E6%AF%94%E5%B0%8F%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text">架构对比小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%8C%81%E4%B9%85%E5%8C%96%E7%9A%84%E4%B8%89%E7%A7%8D%E6%80%9D%E8%B7%AF"><span class="toc-number">3.</span> <span class="toc-text">二、记忆系统：持久化的三种思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Claude-Managed-Agents%EF%BC%9AMemory-Stores"><span class="toc-number">3.1.</span> <span class="toc-text">Claude Managed Agents：Memory Stores</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermes-Agent%EF%BC%9A%E4%B8%A4%E6%96%87%E4%BB%B6-%E4%BC%9A%E8%AF%9D%E6%90%9C%E7%B4%A2"><span class="toc-number">3.2.</span> <span class="toc-text">Hermes Agent：两文件 + 会话搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenClaw%EF%BC%9A%E6%B8%90%E8%BF%9B%E5%BC%8F%E8%AE%B0%E5%BF%86%E6%B3%A8%E5%85%A5"><span class="toc-number">3.3.</span> <span class="toc-text">OpenClaw：渐进式记忆注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94%E5%B0%8F%E7%BB%93"><span class="toc-number">3.4.</span> <span class="toc-text">记忆系统对比小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">三、技能系统：按需加载的多种实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Claude-Managed-Agents%EF%BC%9AAttached-Skills"><span class="toc-number">4.1.</span> <span class="toc-text">Claude Managed Agents：Attached Skills</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermes-Agent%EF%BC%9A%E6%B8%90%E8%BF%9B%E6%8A%AB%E9%9C%B2-%E6%9D%A1%E4%BB%B6%E6%BF%80%E6%B4%BB"><span class="toc-number">4.2.</span> <span class="toc-text">Hermes Agent：渐进披露 + 条件激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenClaw%EF%BC%9A%E7%B4%A7%E5%87%91%E5%88%97%E8%A1%A8-%E5%8A%A0%E8%BD%BD%E6%97%B6%E8%BF%87%E6%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">OpenClaw：紧凑列表 + 加载时过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E8%83%BD%E5%B8%82%E5%9C%BA"><span class="toc-number">4.4.</span> <span class="toc-text">技能市场</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B9%B3%E5%8F%B0%E6%8E%A5%E5%85%A5%EF%BC%9A%E8%81%8A%E5%A4%A9%E7%94%9F%E6%80%81%E7%9A%84%E8%A6%86%E7%9B%96%E5%B7%AE%E5%BC%82"><span class="toc-number">5.</span> <span class="toc-text">四、平台接入：聊天生态的覆盖差异</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Claude-Managed-Agents%EF%BC%9AAPI-%E4%BC%98%E5%85%88"><span class="toc-number">5.1.</span> <span class="toc-text">Claude Managed Agents：API 优先</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermes-Agent%EF%BC%9A15-%E7%A7%8D%E5%B9%B3%E5%8F%B0%E9%80%82%E9%85%8D%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">Hermes Agent：15 种平台适配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenClaw%EF%BC%9AGateway-%E5%8E%9F%E7%94%9F%E9%80%82%E9%85%8D"><span class="toc-number">5.3.</span> <span class="toc-text">OpenClaw：Gateway 原生适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8E%E5%87%AD%E8%AF%81%E7%AE%A1%E7%90%86%E5%88%B0%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="toc-number">6.</span> <span class="toc-text">五、安全模型：从凭证管理到权限控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Claude-Managed-Agents%EF%BC%9AVault-%E9%9A%94%E7%A6%BB"><span class="toc-number">6.1.</span> <span class="toc-text">Claude Managed Agents：Vault 隔离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermes-Agent%EF%BC%9A%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-%E8%AE%B0%E5%BF%86%E6%89%AB%E6%8F%8F"><span class="toc-number">6.2.</span> <span class="toc-text">Hermes Agent：环境变量 + 记忆扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenClaw%EF%BC%9A%E6%B2%99%E7%AE%B1-%E7%BB%91%E5%AE%9A%E6%8C%82%E8%BD%BD%E9%98%B2%E6%8A%A4"><span class="toc-number">6.3.</span> <span class="toc-text">OpenClaw：沙箱 + 绑定挂载防护</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97%EF%BC%9A%E4%B8%89%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%85%A5%E9%97%A8"><span class="toc-number">7.</span> <span class="toc-text">六、上手指南：三行代码入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Claude-Managed-Agents"><span class="toc-number">7.1.</span> <span class="toc-text">Claude Managed Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermes-Agent"><span class="toc-number">7.2.</span> <span class="toc-text">Hermes Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenClaw"><span class="toc-number">7.3.</span> <span class="toc-text">OpenClaw</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%80%89%E5%9E%8B%E5%BB%BA%E8%AE%AE"><span class="toc-number">8.</span> <span class="toc-text">七、选型建议</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/" title="AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评"><img src="/covers/cover-4k-dark.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评"/></a><div class="content"><a class="title" href="/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/" title="AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评">AI Agent 三叉戟：Claude Managed Agents、Hermes Agent、OpenClaw 技术横评</a><time datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/08/ai-agent-notes/" title="AI Agent 入门：Anthropic 官方指南笔记"><img src="/covers/cover-sword-cold.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI Agent 入门：Anthropic 官方指南笔记"/></a><div class="content"><a class="title" href="/2026/04/08/ai-agent-notes/" title="AI Agent 入门：Anthropic 官方指南笔记">AI Agent 入门：Anthropic 官方指南笔记</a><time datetime="2026-04-07T16:00:00.000Z" title="发表于 2026-04-08 00:00:00">2026-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/02/network-protocols/" title="网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN"><img src="/covers/cover-fuji-night.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN"/></a><div class="content"><a class="title" href="/2026/04/02/network-protocols/" title="网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN">网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN</a><time datetime="2026-04-02T02:48:00.000Z" title="发表于 2026-04-02 10:48:00">2026-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/04/pingfan-de-shijie-shuzhai-1/" title="《平凡的世界》书摘 - 那些触动心灵的句子"><img src="/covers/cover-eastern-aesthetic.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《平凡的世界》书摘 - 那些触动心灵的句子"/></a><div class="content"><a class="title" href="/2025/11/04/pingfan-de-shijie-shuzhai-1/" title="《平凡的世界》书摘 - 那些触动心灵的句子">《平凡的世界》书摘 - 那些触动心灵的句子</a><time datetime="2025-11-04T03:49:00.000Z" title="发表于 2025-11-04 11:49:00">2025-11-04</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By hua2003-liu</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
