@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Pi Top 20 热门扩展盘点 | hua2003-liuの博客</title><meta name="author" content="hua2003-liu"><meta name="copyright" content="hua2003-liu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="pi.dev 上现在有 2400 多个扩展包，月下载量前 20 的加起来超过 50 万次。我来逐个介绍这些扩展。 pi-subagents — 70.6K&#x2F;月让 AI 把任务委派给专注的子代理。内置 7 个专业代理：  scout：快速本地代码库侦察，找到相关文件、入口点、数据流、风险，以及另一个代理应该从哪里开始  researcher：网络和文档研究，包括官方文档、规范、基准测试、最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pi Top 20 热门扩展盘点">
+<meta property="og:url" content="https://hua2003-liu.github.io/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/index.html">
+<meta property="og:site_name" content="hua2003-liuの博客">
+<meta property="og:description" content="pi.dev 上现在有 2400 多个扩展包，月下载量前 20 的加起来超过 50 万次。我来逐个介绍这些扩展。 pi-subagents — 70.6K&#x2F;月让 AI 把任务委派给专注的子代理。内置 7 个专业代理：  scout：快速本地代码库侦察，找到相关文件、入口点、数据流、风险，以及另一个代理应该从哪里开始  researcher：网络和文档研究，包括官方文档、规范、基准测试、最">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hua2003-liu.github.io/covers/cover-sword-cold.png">
+<meta property="article:published_time" content="2026-05-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-11T04:12:13.040Z">
+<meta property="article:author" content="hua2003-liu">
+<meta property="article:tag" content="Pi">
+<meta property="article:tag" content="AI编程">
+<meta property="article:tag" content="扩展">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hua2003-liu.github.io/covers/cover-sword-cold.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pi Top 20 热门扩展盘点",
+  "url": "https://hua2003-liu.github.io/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/",
+  "image": "https://hua2003-liu.github.io/covers/cover-sword-cold.png",
+  "datePublished": "2026-05-10T16:00:00.000Z",
+  "dateModified": "2026-05-11T04:12:13.040Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "hua2003-liu",
+      "url": "https://hua2003-liu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://hua2003-liu.github.io/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pi Top 20 热门扩展盘点',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/say/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/covers/cover-sword-cold.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">hua2003-liuの博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Pi Top 20 热门扩展盘点</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/say/"><i class="fa-fw fas fa-comment"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Pi Top 20 热门扩展盘点</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-10T16:00:00.000Z" title="发表于 2026-05-11 00:00:00">2026-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-11T04:12:13.040Z" title="更新于 2026-05-11 12:12:13">2026-05-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%B7%A5%E5%85%B7/">AI工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">5.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>pi.dev 上现在有 2400 多个扩展包，月下载量前 20 的加起来超过 50 万次。我来逐个介绍这些扩展。</p>
+<h2 id="pi-subagents-—-70-6K-月"><a href="#pi-subagents-—-70-6K-月" class="headerlink" title="pi-subagents — 70.6K&#x2F;月"></a>pi-subagents — 70.6K&#x2F;月</h2><p>让 AI 把任务委派给专注的子代理。内置 7 个专业代理：</p>
+<ul>
+<li><p><strong>scout</strong>：快速本地代码库侦察，找到相关文件、入口点、数据流、风险，以及另一个代理应该从哪里开始</p>
+</li>
+<li><p><strong>researcher</strong>：网络和文档研究，包括官方文档、规范、基准测试、最近变更，生成简洁的研究简报</p>
+</li>
+<li><p><strong>planner</strong>：从现有上下文制定具体实现计划，只读和计划，不编辑代码</p>
+</li>
+<li><p><strong>worker</strong>：实现工作，包括已批准的 oracle 交接，编辑文件、验证，遇到未批准的决策时升级而不是猜测</p>
+</li>
+<li><p><strong>reviewer</strong>：代码审查和小修复，检查实现是否符合任务&#x2F;计划、测试、边缘情况和简洁性</p>
+</li>
+<li><p><strong>context-builder</strong>：规划前的更强设置阶段，收集代码上下文并编写交接材料如 <code>context.md</code> 和 <code>meta-prompt.md</code></p>
+</li>
+<li><p><strong>oracle</strong>：行动前的第二意见，挑战假设、捕捉偏离、推荐最安全的下一步，不编辑文件</p>
+</li>
+</ul>
+<p>可以用自然语言触发：”Use reviewer to review this diff” 或 “Ask oracle for a second opinion on my current plan”。也可以链式执行（scout → planner → worker）或并行执行（多个 reviewer 同时工作，一个关注正确性，一个关注测试，一个关注不必要复杂度）。</p>
+<p>支持后台运行和 fork 上下文。子代理可以 TUI 澄清 UI 预览和编辑工作流。内置推荐编排模式：clarify → planner → worker → fresh reviewers → worker。</p>
+<h2 id="pi-mcp-adapter-—-59-8K-月"><a href="#pi-mcp-adapter-—-59-8K-月" class="headerlink" title="pi-mcp-adapter — 59.8K&#x2F;月"></a>pi-mcp-adapter — 59.8K&#x2F;月</h2><p>MCP（Model Context Protocol）是 Anthropic 推出的模型上下文协议。问题是 MCP 服务器会暴露上百个工具，每个工具的定义要占 100-300 token，连接几个服务器就烧掉半个上下文窗口——而且不管你用不用这些工具都要付这个成本。</p>
+<p>这个适配器用一个 <code>mcp</code> 代理工具（约 200 token）代替所有 MCP 工具。服务器懒加载——只有实际调用工具时才连接，不会在启动时连接。工具元数据缓存到磁盘（<code>~/.pi/agent/mcp-cache.json</code>），搜索、列出和描述功能不需要实时连接。</p>
+<p>可以通过 <code>directTools</code> 配置把常用工具提升为 Pi 的一级工具，让 LLM 直接看到，而不是通过代理搜索。比如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;github&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;-y&quot;</span><span class="punctuation">,</span> <span class="string">&quot;@modelcontextprotocol/server-github&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;directTools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;search_repositories&quot;</span><span class="punctuation">,</span> <span class="string">&quot;get_file_contents&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>生命周期模式：<code>lazy</code>（默认，连接后空闲 10 分钟断开）、<code>eager</code>（启动连接但不自动重连）、<code>keep-alive</code>（启动连接，自动重连）。</p>
+<p>支持 MCP UI 标准。当 agent 调用有 UI 资源的工具时，适配器通过 Glimpse（macOS）或浏览器打开它，UI 可以调用 MCP 工具并发消息回给 agent，双向通信。</p>
+<p>配置文件：<code>.mcp.json</code>（项目）、<code>~/.config/mcp/mcp.json</code>（用户全局）、<code>~/.pi/agent/mcp.json</code>（Pi 全局覆盖）、<code>.pi/mcp.json</code>（Pi 项目覆盖）。</p>
+<h2 id="context-mode-—-57-8K-月"><a href="#context-mode-—-57-8K-月" class="headerlink" title="context-mode — 57.8K&#x2F;月"></a>context-mode — 57.8K&#x2F;月</h2><p>“上下文问题的另一半”。从 4 个方面解决：</p>
+<p><strong>上下文节省</strong>：沙箱工具把原始数据挡在上下文外。Playwright 快照 56KB、20 个 GitHub issue 59KB、一个访问日志 45KB，通过沙箱后变成 5.4KB，98% 减少。</p>
+<p><strong>会话连续性</strong>：每个文件编辑、git 操作、任务、错误和用户决定都记录到 SQLite。对话压缩后不把这些数据倒回上下文——而是索引到 FTS5，通过 BM25 搜索只注入相关内容。模型从上次停的地方继续。如果你不用 <code>--continue</code>，上次会话数据立即删除——新会话是干净的开始。</p>
+<p><strong>Think in Code</strong>：LLM 应该编程来做分析，而不是计算。不是读 50 个文件到上下文来数函数，而是写个脚本做计数，<code>console.log()</code> 结果。一个脚本代替 10 次工具调用，节省 100 倍上下文。这是所有 15 个平台的强制性范式：停止把 LLM 当数据处理器，把它当代码生成器。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Before: 47 × Read() = 700 KB. After: 1 × ctx_execute() = 3.6 KB.</span></span><br><span class="line"><span class="title function_">ctx_execute</span>(<span class="string">&quot;javascript&quot;</span>, <span class="string">`</span></span><br><span class="line"><span class="string">  const files = fs.readdirSync(&#x27;src&#x27;).filter(f =&gt; f.endsWith(&#x27;.ts&#x27;));</span></span><br><span class="line"><span class="string">  files.forEach(f =&gt; console.log(f + &#x27;: &#x27; + fs.readFileSync(&#x27;src/&#x27;+f,&#x27;utf8&#x27;).split(&#x27;\n&#x27;).length + &#x27; lines&#x27;));</span></span><br><span class="line"><span class="string">`</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>不强制文风</strong>：context-mode 管数据往哪去，不管模型怎么写回答。简洁性、完整性、格式——你的模型决定（或通过你自己的 <code>CLAUDE.md</code>&#x2F;<code>AGENTS.md</code>）。</p>
+<p>11 个 MCP 工具：<code>ctx_batch_execute</code>、<code>ctx_execute</code>、<code>ctx_execute_file</code>、<code>ctx_index</code>、<code>ctx_search</code>、<code>ctx_fetch_and_index</code>（6 个沙箱工具）+ <code>ctx_stats</code>、<code>ctx_doctor</code>、<code>ctx_upgrade</code>、<code>ctx_purge</code>、<code>ctx_insight</code>（5 个元工具）。</p>
+<p>支持 Claude Code（plugin 自动路由）、Gemini CLI（hook 自动路由）、VS Code Copilot（hook）、JetBrains Copilot（hook）、Cursor（hook&#x2F;plugin）、OpenCode（plugin）等平台。</p>
+<h2 id="pi-web-access-—-34-3K-月"><a href="#pi-web-access-—-34-3K-月" class="headerlink" title="pi-web-access — 34.3K&#x2F;月"></a>pi-web-access — 34.3K&#x2F;月</h2><p>网页搜索、内容提取和视频理解。零配置 Exa 搜索（不需要 API key），也可以添加 Exa、Perplexity 或 Gemini API key 获取更多控制，或者用浏览器 cookie 访问 Gemini Web。</p>
+<p>工具：</p>
+<ul>
+<li><p><strong>web_search</strong>：通过 Exa、Perplexity AI 或 Gemini 搜索网络，返回带来源引用的综合答案。支持批量查询、按天&#x2F;周&#x2F;月&#x2F;年过滤、限制域名、包含内容抓取</p>
+</li>
+<li><p><strong>code_search</strong>：通过 Exa MCP 搜索代码示例、文档和 API 引用，不需要 API key</p>
+</li>
+<li><p><strong>fetch_content</strong>：获取 URL 并提取可读内容为 markdown。自动检测和处理 GitHub 仓库、YouTube 视频、PDF、本地视频文件和常规网页</p>
+</li>
+<li><p><strong>get_search_content</strong>：从之前的搜索或抓取中检索存储的内容</p>
+</li>
+</ul>
+<p>GitHub URL 被克隆到本地，不是抓取渲染的 HTML。模型拿到真实文件内容和本地路径，可以用 <code>read</code> 和 <code>bash</code> 探索。超过 350MB 的仓库通过 API 获取轻量级视图（可以 <code>forceClone: true</code> 覆盖）。克隆在会话中缓存，会话更改后清除。私有仓库需要 <code>gh</code> CLI。</p>
+<p>YouTube 视频通过 Gemini 处理：完整转录、带时间戳的视觉描述、章节标记。可以传一个 <code>prompt</code> 问视频里的具体问题。结果包含视频缩略图。fallback：Gemini Web（启用浏览器 cookie 时）→ Gemini API → Perplexity（只有文本摘要）。处理所有 URL 格式：<code>/watch?v=</code>、<code>youtu.be/</code>、<code>/shorts/</code>、<code>/live/</code>、<code>/embed/</code>、<code>/v/</code>。</p>
+<p>本地视频文件：传文件路径（<code>/</code>、<code>./</code>、<code>../</code> 或 <code>file://</code> 前缀）通过 Gemini 分析视频内容。支持 MP4、MOV、WebM、AVI 等常见格式，最大 50MB。可以传 <code>prompt</code> 问具体内容。安装 ffmpeg 会包含缩略图帧。</p>
+<p>PDF URL 提取为文本并保存到 <code>~/Downloads/</code> 作为 markdown。agent 可以 <code>read</code> 特定部分而不加载完整文档到上下文。只有文本提取，没有 OCR（扫描文档）。</p>
+<p>被阻止的页面：当 Readability 失败或只返回 cookie 通知时，扩展通过 Jina Reader（服务器端 JS 渲染，不需要 API key）重试，然后 Gemini URL Context API，再是 Gemini Web 提取（启用浏览器 cookie 时）。处理 SPA、JS 重型页面和反机器人保护。也解析 Next.js RSC flight 数据。</p>
+<p>每个能力都有 fallback 链：搜索先试 Exa，再试 Perplexity，再试 Gemini API，最后试 Gemini Web（启用浏览器 cookie 时）。</p>
+<p>配置：<code>~/.pi/web-search.json</code>。<code>provider</code> 设置默认搜索提供商（<code>exa</code>、<code>perplexity</code>、<code>gemini</code>）。<code>workflow</code> 设置默认 curator 模式（<code>summary-review</code> 打开 curator 并自动生成摘要草稿，<code>none</code> 原始结果）。</p>
+<p>斜杠命令：<code>/websearch</code>（打开搜索 curator）、<code>/curator</code>（切换或配置 curator）、<code>/search</code>（浏览存储的搜索结果）、<code>/google-account</code>（显示当前认证的 Google 账户）。</p>
+<p>活动监视器：<strong>Ctrl+Shift+W</strong> 切换显示实时请求&#x2F;响应活动。</p>
+<h2 id="ollama-pi-web-search-—-26-1K-月"><a href="#ollama-pi-web-search-—-26-1K-月" class="headerlink" title="@ollama&#x2F;pi-web-search — 26.1K&#x2F;月"></a>@ollama&#x2F;pi-web-search — 26.1K&#x2F;月</h2><p>基于本地 Ollama 实例的网页搜索和抓取工具。适合本地部署场景，不依赖外部 API。</p>
+<p>两个工具：</p>
+<ul>
+<li><p><strong>ollama_web_search</strong>：搜索网络获取实时信息</p>
+</li>
+<li><p><strong>ollama_web_fetch</strong>：从网页获取并提取内容</p>
+</li>
+</ul>
+<p>要求：pi coding agent 已安装、Ollama 正在运行（<code>ollama serve</code>）。</p>
+<p>如果连接错误：确保 Ollama 正在运行、验证 web search&#x2F;fetch 在 Ollama 配置中启用、检查 <code>OLLAMA_HOST</code> 环境变量匹配设置。</p>
+<span id="more"></span>
+
+<h2 id="plannotator-pi-extension-—-21-9K-月"><a href="#plannotator-pi-extension-—-21-9K-月" class="headerlink" title="@plannotator&#x2F;pi-extension — 21.9K&#x2F;月"></a>@plannotator&#x2F;pi-extension — 21.9K&#x2F;月</h2><p>交互式计划审查。可以给 agent 消息添加注释，还能审查代码和 PR。提供计划审查界面，agent 可以交互式审查计划，标注问题，收集反馈，改进方案。</p>
+<h2 id="pi-lens-—-13-7K-月"><a href="#pi-lens-—-13-7K-月" class="headerlink" title="pi-lens — 13.7K&#x2F;月"></a>pi-lens — 13.7K&#x2F;月</h2><p>实时代码反馈。每次 <code>write</code> 和 <code>edit</code> 时运行一个快速、语言感知的管道：</p>
+<ul>
+<li><p><strong>Secrets 扫描</strong>：阻止写入，检测到凭证（密码&#x2F;token&#x2F;secret）</p>
+</li>
+<li><p><strong>Auto-fix</strong>：6 个工具的安全自动修复（Biome <code>check --write</code>、Ruff <code>check --fix</code>、ESLint <code>--fix</code>、stylelint <code>--fix</code>、sqlfluff <code>fix</code>、RuboCop <code>-a</code>）在分析前应用</p>
+</li>
+<li><p><strong>LSP 同步</strong>：在活跃语言服务器中打开&#x2F;更新文件</p>
+</li>
+<li><p><strong>并行 lint</strong>：LSP 诊断、tree-sitter 结构规则、ast-grep 安全&#x2F;正确性规则、fact 规则、语言特定 linter、实验性 Semgrep 安全扫描、相似性检测</p>
+</li>
+<li><p><strong>级联诊断</strong>：显示哪些其他文件受影响以及诊断如何传播（通过文件 → 符号 → 依赖的 review graph）</p>
+</li>
+</ul>
+<p>agent 结束时（所有 agent 工具调用完成后）：</p>
+<ul>
+<li><p><strong>延迟格式化</strong>：本轮排队的文件格式化一次，同步到 LSP，跟踪 read-guard 覆盖</p>
+</li>
+<li><p><strong>摘要通知</strong>：简洁状态：多少文件被格式化、哪些改变、是否有格式化器失败</p>
+</li>
+</ul>
+<p>会话开始时：重置运行时状态和诊断遥测，检测项目根、语言配置文件和活跃工具，应用语言感知的启动默认值来预装工具，预热缓存和可选索引（有重叠&#x2F;会话护栏），为检测到的语言发出缺失工具安装提示，在用户提示前添加会话指导，打开 <code>warmFiles</code>（在 <code>.pi-lens/lsp.json</code> 中配置）来为懒索引语言服务器如 clangd 做种。</p>
+<p>LSP 支持默认开启（<code>--lsp</code> 或无 flag），内置 37 种语言服务器定义，自动从 PATH、项目 <code>node_modules</code> 和托管安装中发现。服务器未安装时提供交互式安装提示。LSP 服务器 240 秒不活动后关闭（没有文件被修改），编辑恢复时重置定时器。懒索引服务器如 clangd 可以配置 <code>warmFiles</code> 在会话开始时打开入口点文件。</p>
+<p>格式化器：自动检测并运行 26 种格式化器（biome、prettier、ruff、black、sqlfluff、gofmt、rustfmt、zig fmt、dart format、shfmt、nixfmt、mix format、ocamlformat、clang-format、ktlint、rubocop、standardrb、gleam format、terraform fmt、php-cs-fixer、csharpier、fantomas、swiftformat、stylua、ormolu、taplo）。检测规则：配置门控（只在项目配置指示使用时运行）、最近胜（多个格式化配置在不同目录级别存在时，离编辑文件最近的胜）、Biome 默认（JS&#x2F;TS 文件没有 Prettier 或 Biome 配置时用 Biome）、Ruff 默认（Python 文件没有 Black 配置时用 Ruff format）。</p>
+<p>Read-before-edit 保护：所有文件写入和编辑前验证 agent 是否读了足够上下文。零读取阻止（任何编辑没在当前会话读过的文件）、文件修改阻止（文件在上次读取后磁盘上改变）、超出范围阻止（编辑目标行超出之前读取的范围）。跨越多个读取的覆盖：读取 1-100 行和 101-200 行一起满足完整文件写入。符号扩展读取（小读取通过 tree-sitter 透明扩展到封闭符号）在符号级别计入覆盖。Markdown、文本和日志文件豁免。单次编辑覆盖：<code>/lens-allow-edit &lt;path&gt;</code>。配置 <code>--no-read-guard</code> 禁用或模式设为 <code>warn</code>。</p>
+<p>机会性读取扩展：当 agent 读取一个小切片（≤ 60 行）时，pi-lens 通过 tree-sitter AST 透明扩展到完整封闭符号（函数、方法或类）。agent 收到完整符号作为上下文，read guard 记录符号级别覆盖，所以符号内任何地方的编辑通过而不需要 agent 读每一行。扩展在 200ms 预算内运行，不支持的文件类型或解析失败时静默回退。支持 TypeScript、TSX、JavaScript、JSX、Python、Go、Rust、Ruby。</p>
+<p>Fact 规则管道：覆盖 JavaScript&#x2F;TypeScript、Python、Go、Rust、Ruby、Shell、CMake。基于 TypeScript AST 的 fact-rule 引擎提取函数级别指标并评估质量和安全规则。阻止规则在写入时立即浮现，建议规则通过 <code>/lens-booboo</code> 访问。</p>
+<p>阻止（写入时浮现）：cors-wildcard（<code>Access-Control-Allow-Origin: *</code> 在服务端代码）、error-swallowing（空 catch 块）、no-commented-credentials（注释代码中的密码&#x2F;token&#x2F;secret）、high-entropy-string（Shannon 熵可疑高的字符串字面量，可能硬编码 secret）。</p>
+<h2 id="pi-markdown-preview-—-12-1K-月"><a href="#pi-markdown-preview-—-12-1K-月" class="headerlink" title="pi-markdown-preview — 12.1K&#x2F;月"></a>pi-markdown-preview — 12.1K&#x2F;月</h2><p>Markdown 和 LaTeX 预览。可以输出到终端、浏览器或 PDF。实时渲染，支持数学公式、代码高亮、表格、列表等 Markdown 特性，以及 LaTeX 数学公式。</p>
+<h2 id="juicesharp-rpiv-ask-user-question-—-12K-月"><a href="#juicesharp-rpiv-ask-user-question-—-12K-月" class="headerlink" title="@juicesharp&#x2F;rpiv-ask-user-question — 12K&#x2F;月"></a>@juicesharp&#x2F;rpiv-ask-user-question — 12K&#x2F;月</h2><p>结构化问卷工具。当 AI 需要猜测时，可以用选项向用户提问，而不是自由输入。这样可以避免模糊的猜测，确保得到明确的方向。支持带选项的问卷，用户可以从预定义的选项中选择，或者输入自定义内容（如果允许）。</p>
+<h2 id="pi-powerline-footer-—-11-7K-月"><a href="#pi-powerline-footer-—-11-7K-月" class="headerlink" title="pi-powerline-footer — 11.7K&#x2F;月"></a>pi-powerline-footer — 11.7K&#x2F;月</h2><p>Powerline 风格的状态栏，显示模型、thinking、token、git、worktree 和 skill 指标。提供两行固定状态页脚，包含丰富的信息和视觉反馈。</p>
+<h2 id="juicesharp-rpiv-todo-—-11-5K-月"><a href="#juicesharp-rpiv-todo-—-11-5K-月" class="headerlink" title="@juicesharp&#x2F;rpiv-todo — 11.5K&#x2F;月"></a>@juicesharp&#x2F;rpiv-todo — 11.5K&#x2F;月</h2><p>待办事项列表，以覆盖层显示，<code>/reload</code> 和会话压缩后还在。支持依赖追踪（<code>blockedBy</code>）和循环检测，模型可以顺序安排工作。4 种状态：pending → in_progress → completed，加上删除的墓碑记录（用于审计）。</p>
+<p>覆盖层在编辑器上方实时渲染，完成的项目保持可见直到下个 agent 响应开始，然后消失。12 行折叠阈值；完成的项目先掉落，待办项目最后截断。列表为空时自动隐藏。</p>
+<p>工具 <code>todo</code>：创建&#x2F;更新&#x2F;列表&#x2F;获取&#x2F;删除&#x2F;清除任务。<code>blockedBy</code> 依赖追踪带循环检测。任务通过分支回放持久化——存活会话压缩和 <code>/reload</code>。</p>
+<p>斜杠命令 <code>/todos</code>：按状态分组打印当前待办列表。</p>
+<p>本地化：安装 <code>@juicesharp/rpiv-i18n</code> 可以把覆盖层标题、<code>/todos</code> 章节标题和状态词切换到活动区域。支持 <code>de</code>、<code>en</code>、<code>es</code>、<code>fr</code>、<code>pt</code>、<code>pt-BR</code>、<code>ru</code>、<code>uk</code>。语言从 <code>--locale &lt;code&gt;</code> → <code>~/.config/rpiv-i18n/locale.json</code> → <code>LANG</code>&#x2F;<code>LC_ALL</code> → 英语解析。</p>
+<h2 id="pi-simplify-—-10-2K-月"><a href="#pi-simplify-—-10-2K-月" class="headerlink" title="pi-simplify — 10.2K&#x2F;月"></a>pi-simplify — 10.2K&#x2F;月</h2><p>审查最近修改的代码，检查清晰度、一致性和可维护性。基于 git diff 检测变更文件，让 agent 审查这些原则：</p>
+<ul>
+<li><p><strong>保留功能</strong>：从不改变代码做什么</p>
+</li>
+<li><p><strong>应用项目标准</strong>：遵循 CLAUDE.md&#x2F;AGENTS.md 的约定</p>
+</li>
+<li><p><strong>增强清晰度</strong>：减少复杂度、消除冗余、改进命名</p>
+</li>
+<li><p><strong>保持平衡</strong>：避免过度简化</p>
+</li>
+</ul>
+<p>agent 读每个文件，一次应用一个改进，运行测试验证不破坏任何东西，总结变更。</p>
+<p>斜杠命令：<code>/simplify</code>（审查所有未提交变更）、<code>/simplify --staged</code>（只审查暂存变更）、<code>/simplify src/foo.ts src/bar.ts</code>（审查特定文件）、<code>/simplify --ref=main</code>（对比特定分支 diff）。</p>
+<h2 id="juicesharp-rpiv-advisor-—-9-294-月"><a href="#juicesharp-rpiv-advisor-—-9-294-月" class="headerlink" title="@juicesharp&#x2F;rpiv-advisor — 9,294&#x2F;月"></a>@juicesharp&#x2F;rpiv-advisor — 9,294&#x2F;月</h2><p>让 AI 在行动前向更强的模型请求第二意见。当决策本身有风险时很有用——oracle 会挑战假设、捕捉偏离、推荐最安全的下一步而不编辑文件。避免在没验证的情况下做出高风险决策。</p>
+<h2 id="pi-btw-—-9-095-月"><a href="#pi-btw-—-9-095-月" class="headerlink" title="pi-btw — 9,095&#x2F;月"></a>pi-btw — 9,095&#x2F;月</h2><p>平行对话功能。<code>/btw</code> 命令开启一个真正的 Pi 子会话，有 <code>read</code>&#x2F;<code>bash</code>&#x2F;<code>edit</code>&#x2F;<code>write</code> 工具访问，在主 agent 忙碌时也能运行。</p>
+<ul>
+<li><p>连续 BTW 线程：默认保持，后续 <code>/btw</code> 调用继续当前线程</p>
+</li>
+<li><p><code>/btw:tangent</code>：上下文无关的侧边线程，不从当前主会话继承对话</p>
+</li>
+<li><p>打开专注 BTW 模态窗口：有自己的 composer 和 transcript</p>
+</li>
+<li><p>在你用 <code>Alt+/</code> 把焦点切回主编辑器时保持 BTW 覆盖打开</p>
+</li>
+<li><p>BTW 线程条目不出现在主 agent 的未来上下文中</p>
+</li>
+<li><p>支持 BTW-only 模型和 thinking 覆盖而不改变主线程设置</p>
+</li>
+<li><p>注入完整线程或摘要回主 agent</p>
+</li>
+<li><p>可选 <code>--save</code> 把单个 BTW 交换保存为可见的会话笔记</p>
+</li>
+</ul>
+<p>斜杠命令：</p>
+<ul>
+<li><p><code>/btw [--save] &lt;question&gt;</code>：立即运行，保持当前 BTW 线程，打开或刷新 BTW 模态窗口，流到 BTW 模态 transcript&#x2F;状态表面，持久化 BTW 交换为隐藏线程状态</p>
+</li>
+<li><p><code>/btw:new [question]</code>：清除当前 BTW 线程，从当前主会话上下文启动新线程</p>
+</li>
+<li><p><code>/btw:tangent [--save] &lt;question&gt;</code>：启动或继续上下文无关的 tangent 线程，不从当前主会话继承对话</p>
+</li>
+<li><p><code>/btw:clear</code>：关闭 BTW 模态&#x2F;组件，清除当前 BTW 线程</p>
+</li>
+<li><p><code>/btw:inject [instructions]</code>：发送完整 BTW 线程回主 agent 作为用户消息，pi 忙碌时排队为后续，发送后清除 BTW 线程</p>
+</li>
+<li><p><code>/btw:summarize [instructions]</code>：用当前有效 BTW 模型总结 BTW 线程，注入到主 agent，pi 忙碌时排队，清除 BTW 线程</p>
+</li>
+<li><p><code>/btw:model [&lt;provider&gt; &lt;model&gt; &lt;api&gt; | clear]</code>：显示或设置 BTW-only 模型覆盖</p>
+</li>
+<li><p><code>/btw:thinking [&lt;level&gt; | clear]</code>：显示或设置 BTW-only thinking 覆盖</p>
+</li>
+</ul>
+<p>覆盖控件：<code>Alt+/</code> 在 BTW 和主编辑器之间切换焦点不关闭覆盖层，<code>Ctrl+Alt+W</code> 是不传递 <code>Alt+/</code> 的终端的回退焦点切换，<code>Esc</code> 覆盖层聚焦时立即关闭 BTW。</p>
+<p>BTW 作为实际 Pi 子会话实现，有自己的内存会话状态、transcript 事件和工具表面。上下文 <code>/btw</code> 线程从当前主会话分支种子化并过滤掉父上下文中的 BTW 可见笔记；<code>/btw:tangent</code> 在无上下文模式下启动相同 BTW UI。BTW 可以继承主线程模型&#x2F;thinking 设置或使用 BTW-only 覆盖。覆盖层 transcript&#x2F;状态行从子会话事件驱动。</p>
+<h2 id="juicesharp-rpiv-web-tools-—-9-054-月"><a href="#juicesharp-rpiv-web-tools-—-9-054-月" class="headerlink" title="@juicesharp&#x2F;rpiv-web-tools — 9,054&#x2F;月"></a>@juicesharp&#x2F;rpiv-web-tools — 9,054&#x2F;月</h2><p>基于 Brave Search API 的网页搜索工具。提供网络搜索和内容抓取功能，使用 Brave Search API 获取结果，适合需要高质量搜索结果的场景。</p>
+<h2 id="juicesharp-rpiv-btw-—-8-998-月"><a href="#juicesharp-rpiv-btw-—-8-998-月" class="headerlink" title="@juicesharp&#x2F;rpiv-btw — 8,998&#x2F;月"></a>@juicesharp&#x2F;rpiv-btw — 8,998&#x2F;月</h2><p><code>/btw</code> 斜杠命令，一次性侧边提问。简化版平行对话，用于快速侧边问题而不保持连续线程。</p>
+<h2 id="runfusion-fusion-—-8-990-月"><a href="#runfusion-fusion-—-8-990-月" class="headerlink" title="@runfusion&#x2F;fusion — 8,990&#x2F;月"></a>@runfusion&#x2F;fusion — 8,990&#x2F;月</h2><p>Fusion AI 编码代理的 CLI 工具。提供 HTTP API 服务器、守护进程、dashboard 启动器和任务工具。</p>
+<h2 id="juicesharp-rpiv-pi-—-8-855-月"><a href="#juicesharp-rpiv-pi-—-8-855-月" class="headerlink" title="@juicesharp&#x2F;rpiv-pi — 8,855&#x2F;月"></a>@juicesharp&#x2F;rpiv-pi — 8,855&#x2F;月</h2><p>基于技能的开发工作流。包含五个技能（研究、设计、计划、实现、验证）和组成其 ship-loop 的共享子代理。提供技能驱动的开发流程，从研究到验证的完整链路。</p>
+<h2 id="glimpseui-—-8-683-月"><a href="#glimpseui-—-8-683-月" class="headerlink" title="glimpseui — 8,683&#x2F;月"></a>glimpseui — 8,683&#x2F;月</h2><p>原生微 UI 框架，提供跨平台的 WebView 窗口和双向 JSON 通信。用于脚本和代理——跨平台 WebView 窗口带双向 JSON 通信。</p>
+<p>MCP UI 标准支持：当 agent 调用有 UI 资源（<code>_meta.ui.resourceUri</code>）的工具时，适配器获取 UI HTML 并在 iframe 中打开（通过 Glimpse 的原生 macOS WKWebView 窗口，如果可用，否则回退到浏览器）。UI 可以调用 MCP 工具并发消息回给 agent。</p>
+<p>会话复用：当 agent 再次调用同一工具而其 UI 已打开时，适配器推送新结果到现有窗口而不是替换。这启用实时更新——agent 可以细化图表、添加数据或响应用户输入而不丢失当前视图。不同工具仍替换会话如之前。</p>
+<p>来自 UI 的消息类型：<code>prompt</code>（触发 agent 响应用户消息）、<code>intent</code>（带名称 + 参数的结构化动作）、<code>notify</code>（即发即忘通知）、<code>message</code>（通用消息负载）。</p>
+<p>检索 UI 消息：<code>mcp(&#123; action: &quot;ui-messages&quot; &#125;)</code>。</p>
+<p>浏览器控件：<code>Cmd/Ctrl+Enter</code> 完成并关闭，<code>Escape</code> 取消并关闭，<code>Done/Cancel 按钮</code> 同键盘快捷键。</p>
+<p>技术：工具许可门控 UI 是否可以调用 MCP 工具，支持 stdio 和 HTTP MCP 服务器，使用本地 408KB AppBridge 包（MCP SDK + Zod）进行浏览器↔服务器通信。</p>
+<h2 id="samfp-pi-memory-—-8-013-月"><a href="#samfp-pi-memory-—-8-013-月" class="headerlink" title="@samfp&#x2F;pi-memory — 8,013&#x2F;月"></a>@samfp&#x2F;pi-memory — 8,013&#x2F;月</h2><p>持久化记忆。从会话中学习纠正、偏好和模式，在未来对话中注入。</p>
+<p>自动学习：会话结束时通过 LLM 整合提取偏好、项目模式和纠正。只有置信度 ≥ 0.8 的事实被存储。课程通过精确匹配和 Jaccard 相似度（≥ 0.7 阈值）去重。</p>
+<p>上下文注入：新会话开始时从存储事实和课程构建 <code>&lt;memory&gt;</code> 上下文块，追加到系统提示。块限制在 8KB。</p>
+<p>纠正粘住：你纠正一次的错误变成永久课程（如 “use sed for daily notes, not echo &gt;&gt;”）。</p>
+<p>记忆类型：偏好（<code>pref.*</code>，如 <code>pref.commit_style</code> → “conventional commits”）、项目模式（<code>project.*</code>，如 <code>project.rosie.di</code> → “Dagger dependency injection”）、工具偏好（<code>tool.*</code>，如 <code>tool.sed</code> → “use for daily note insertion”）、用户身份（<code>user.*</code>，如 <code>user.timezone</code> → “US&#x2F;Pacific”）、课程（表格）。</p>
+<p>工具：<code>memory_search</code>（语义搜索）、<code>memory_remember</code>（手动存储事实或课程）、<code>memory_forget</code>（删除事实或课程）、<code>memory_lessons</code>（列学习的纠正）、<code>memory_stats</code>（显示记忆统计）。</p>
+<p>斜杠命令：<code>/memory-consolidate</code>（手动触发从当前会话的内存提取）。</p>
+<p>工作原理：</p>
+<ul>
+<li><p><strong>session_start</strong>：打开 SQLite 存储，在状态栏短暂显示记忆统计</p>
+</li>
+<li><p><strong>before_agent_start</strong>：从存储事实和课程构建 <code>&lt;memory&gt;</code> 上下文块，追加到系统提示</p>
+</li>
+<li><p><strong>agent_end</strong>：收集会话消息用于后续整合</p>
+</li>
+<li><p><strong>session_shutdown</strong>：运行 LLM 整合（通过 <code>pi -p --print</code>）提取结构化知识，然后关闭存储</p>
+</li>
+</ul>
+<p>存储：SQLite 数据库在 <code>~/.pi/memory/memory.db</code>（WAL 模式）。三张表：<code>semantic</code>（带置信度分数的键值事实）、<code>lessons</code>（学习的纠正带去重）、<code>events</code>（所有记忆操作的审计日志）。</p>
+<p>项目本地存储：保持项目记忆与用户全局记忆隔离，在 <code>&#123;project&#125;/.pi/settings.json</code> 添加：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;pi-memory&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;localPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.pi/memory&quot;</span> <span class="comment">// 解析为 &#123;project&#125;/.pi/memory/memory.db</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者如果通过 <code>pi-total-recall</code> 安装（包含 pi-memory、pi-session-search 和 pi-knowledge-search 的完整上下文堆）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;pi-total-recall&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;localPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.pi/total-recall&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>解析顺序（最高优先在前）：<code>pi-memory.localPath</code> 在 <code>&#123;cwd&#125;/.pi/settings.json</code> → <code>pi-total-recall.localPath</code> cascade → <code>&#123;localPath&#125;/memory/memory.db</code> → 全局默认：<code>~/.pi/memory/memory.db</code>。</p>
+<p>选择性课程注入：默认所有课程注入每个会话。当有很多跨不同领域的课程时可能浪费上下文。启用选择性模式根据相关性过滤课程：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;memory&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;lessonInjection&quot;</span><span class="punctuation">:</span> <span class="string">&quot;selective&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加到 <code>~/.pi/agent/settings.json</code>。在选择性模式，课程通过提示相关性（FTS 搜索用户的第一个消息）、项目上下文（匹配当前工作目录项目的课程）、类别推断（提示中的关键词触发相关类别，如 “pentest” 拉取 <code>bug-bounty</code> 课程，”blog post” 拉取 <code>writing</code> 课程）过滤。结果限制在 15 个最相关课程而不是全部。</p>
+<h2 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h2><p>这 20 个扩展每月下载超过 50 万次。juicesharp 和 nicopreme 贡献最多，各有多个扩展上榜。juicesharp 专注于工作流工具（rpiv-todo、rpiv-advisor、pi-btw、rpiv-ask-user-question、rpiv-pi），nicopreme 贡献了核心扩展（pi-subagents、pi-mcp-adapter、pi-web-access）。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装扩展用 <code>pi install npm:&lt;package名&gt;</code>。比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi install npm:pi-subagents</span><br></pre></td></tr></table></figure>
+
+<h2 id="最后的话"><a href="#最后的话" class="headerlink" title="最后的话"></a>最后的话</h2><p>Pi 的扩展生态在快速成长。从任务调度、网络访问到代码审查、文档预览，从子代理协作到持久化记忆，开发者们构建了完整的工具链。这个排行榜只是个快照，未来应该还会有更多好东西。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hua2003-liu.github.io">hua2003-liu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hua2003-liu.github.io/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/">https://hua2003-liu.github.io/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hua2003-liu.github.io" target="_blank">hua2003-liuの博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Pi/">Pi</a><a class="post-meta__tags" href="/tags/AI%E7%BC%96%E7%A8%8B/">AI编程</a><a class="post-meta__tags" href="/tags/%E6%89%A9%E5%B1%95/">扩展</a></div><div class="post-share"><div class="social-share" data-image="/covers/cover-sword-cold.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/04/15/sdlc-process-model-methodology/" title="SDLC、过程模型、方法论：AI 时代再审视"><img class="cover" src="/covers/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">SDLC、过程模型、方法论：AI 时代再审视</div></div><div class="info-2"><div class="info-item-1">面试里问”你们用什么开发模型”，十个有八个回答”敏捷”。继续问”敏捷和 Scrum 什么关系”，不少人就开始眼神飘忽。 瀑布、迭代、敏捷、Scrum、DevOps——这些词不是一回事。它们分属三个层级：软件开发生命周期（SDLC）、软件过程模型、软件开发方法论。搞懂这层关系，选型时才不会瞎套。 而 **2025 年被称为”Agent 元年”**，AI 编程从代码补全正式迈入智能体协作阶段。到 2026 年，Claude Code、Copilot Agent 这类工具已经进入日常开发的深水区。这篇文章先把基础概念理清楚，再深入常见的方法论，最后聊聊 AI 时代下需求分析和系统设计该怎么玩。 一、三个概念，层级不同1. SDLC：软件的生老病死SDLC 是软件从诞生到退役必经的阶段：需求分析、系统设计、编码实现、测试验证、部署上线、运维迭代，最后下线。 这些阶段是跑不掉的。不管团队用瀑布还是敏捷，设计、编码、测试一个都不会少。SDLC 只回答一个问题：有哪些事必须做。 2. 过程模型：阶段怎么排过程模型定义的是这些阶段以什么结构执行。 是像流水线一样直线推进？还是切成小圈反复迭代？抑...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/15/sdlc-process-model-methodology/" title="SDLC、过程模型、方法论：AI 时代再审视"><img class="cover" src="/covers/cover.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-15</div><div class="info-item-2">SDLC、过程模型、方法论：AI 时代再审视</div></div><div class="info-2"><div class="info-item-1">面试里问”你们用什么开发模型”，十个有八个回答”敏捷”。继续问”敏捷和 Scrum 什么关系”，不少人就开始眼神飘忽。 瀑布、迭代、敏捷、Scrum、DevOps——这些词不是一回事。它们分属三个层级：软件开发生命周期（SDLC）、软件过程模型、软件开发方法论。搞懂这层关系，选型时才不会瞎套。 而 **2025 年被称为”Agent 元年”**，AI 编程从代码补全正式迈入智能体协作阶段。到 2026 年，Claude Code、Copilot Agent 这类工具已经进入日常开发的深水区。这篇文章先把基础概念理清楚，再深入常见的方法论，最后聊聊 AI 时代下需求分析和系统设计该怎么玩。 一、三个概念，层级不同1. SDLC：软件的生老病死SDLC 是软件从诞生到退役必经的阶段：需求分析、系统设计、编码实现、测试验证、部署上线、运维迭代，最后下线。 这些阶段是跑不掉的。不管团队用瀑布还是敏捷，设计、编码、测试一个都不会少。SDLC 只回答一个问题：有哪些事必须做。 2. 过程模型：阶段怎么排过程模型定义的是这些阶段以什么结构执行。 是像流水线一样直线推进？还是切成小圈反复迭代？抑...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">hua2003-liu</div><div class="author-info-description">分享编程学习心得、技术开发笔记和生活感悟。记录 JavaScript、Web 开发等技术学习内容。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-subagents-%E2%80%94-70-6K-%E6%9C%88"><span class="toc-number">1.</span> <span class="toc-text">pi-subagents — 70.6K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-mcp-adapter-%E2%80%94-59-8K-%E6%9C%88"><span class="toc-number">2.</span> <span class="toc-text">pi-mcp-adapter — 59.8K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#context-mode-%E2%80%94-57-8K-%E6%9C%88"><span class="toc-number">3.</span> <span class="toc-text">context-mode — 57.8K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-web-access-%E2%80%94-34-3K-%E6%9C%88"><span class="toc-number">4.</span> <span class="toc-text">pi-web-access — 34.3K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ollama-pi-web-search-%E2%80%94-26-1K-%E6%9C%88"><span class="toc-number">5.</span> <span class="toc-text">@ollama&#x2F;pi-web-search — 26.1K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#plannotator-pi-extension-%E2%80%94-21-9K-%E6%9C%88"><span class="toc-number">6.</span> <span class="toc-text">@plannotator&#x2F;pi-extension — 21.9K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-lens-%E2%80%94-13-7K-%E6%9C%88"><span class="toc-number">7.</span> <span class="toc-text">pi-lens — 13.7K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-markdown-preview-%E2%80%94-12-1K-%E6%9C%88"><span class="toc-number">8.</span> <span class="toc-text">pi-markdown-preview — 12.1K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#juicesharp-rpiv-ask-user-question-%E2%80%94-12K-%E6%9C%88"><span class="toc-number">9.</span> <span class="toc-text">@juicesharp&#x2F;rpiv-ask-user-question — 12K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-powerline-footer-%E2%80%94-11-7K-%E6%9C%88"><span class="toc-number">10.</span> <span class="toc-text">pi-powerline-footer — 11.7K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#juicesharp-rpiv-todo-%E2%80%94-11-5K-%E6%9C%88"><span class="toc-number">11.</span> <span class="toc-text">@juicesharp&#x2F;rpiv-todo — 11.5K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-simplify-%E2%80%94-10-2K-%E6%9C%88"><span class="toc-number">12.</span> <span class="toc-text">pi-simplify — 10.2K&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#juicesharp-rpiv-advisor-%E2%80%94-9-294-%E6%9C%88"><span class="toc-number">13.</span> <span class="toc-text">@juicesharp&#x2F;rpiv-advisor — 9,294&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pi-btw-%E2%80%94-9-095-%E6%9C%88"><span class="toc-number">14.</span> <span class="toc-text">pi-btw — 9,095&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#juicesharp-rpiv-web-tools-%E2%80%94-9-054-%E6%9C%88"><span class="toc-number">15.</span> <span class="toc-text">@juicesharp&#x2F;rpiv-web-tools — 9,054&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#juicesharp-rpiv-btw-%E2%80%94-8-998-%E6%9C%88"><span class="toc-number">16.</span> <span class="toc-text">@juicesharp&#x2F;rpiv-btw — 8,998&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#runfusion-fusion-%E2%80%94-8-990-%E6%9C%88"><span class="toc-number">17.</span> <span class="toc-text">@runfusion&#x2F;fusion — 8,990&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#juicesharp-rpiv-pi-%E2%80%94-8-855-%E6%9C%88"><span class="toc-number">18.</span> <span class="toc-text">@juicesharp&#x2F;rpiv-pi — 8,855&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#glimpseui-%E2%80%94-8-683-%E6%9C%88"><span class="toc-number">19.</span> <span class="toc-text">glimpseui — 8,683&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#samfp-pi-memory-%E2%80%94-8-013-%E6%9C%88"><span class="toc-number">20.</span> <span class="toc-text">@samfp&#x2F;pi-memory — 8,013&#x2F;月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA"><span class="toc-number">21.</span> <span class="toc-text">社区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">22.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E8%AF%9D"><span class="toc-number">23.</span> <span class="toc-text">最后的话</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/" title="Pi Top 20 热门扩展盘点"><img src="/covers/cover-sword-cold.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pi Top 20 热门扩展盘点"/></a><div class="content"><a class="title" href="/2026/05/11/Pi-Top-20-%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95%E7%9B%98%E7%82%B9/" title="Pi Top 20 热门扩展盘点">Pi Top 20 热门扩展盘点</a><time datetime="2026-05-10T16:00:00.000Z" title="发表于 2026-05-11 00:00:00">2026-05-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/15/sdlc-process-model-methodology/" title="SDLC、过程模型、方法论：AI 时代再审视"><img src="/covers/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SDLC、过程模型、方法论：AI 时代再审视"/></a><div class="content"><a class="title" href="/2026/04/15/sdlc-process-model-methodology/" title="SDLC、过程模型、方法论：AI 时代再审视">SDLC、过程模型、方法论：AI 时代再审视</a><time datetime="2026-04-15T07:00:00.000Z" title="发表于 2026-04-15 15:00:00">2026-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/" title="三个 AI Agent 工具对比：Claude Managed Agents、Hermes Agent、OpenClaw 选哪"><img src="/covers/cover-anime-character.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="三个 AI Agent 工具对比：Claude Managed Agents、Hermes Agent、OpenClaw 选哪"/></a><div class="content"><a class="title" href="/2026/04/09/ai-agent-trinity-claude-hermes-openclaw/" title="三个 AI Agent 工具对比：Claude Managed Agents、Hermes Agent、OpenClaw 选哪">三个 AI Agent 工具对比：Claude Managed Agents、Hermes Agent、OpenClaw 选哪</a><time datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/08/ai-agent-notes/" title="AI Agent 入门：Anthropic 官方指南笔记"><img src="/covers/cover-eastern-aesthetic.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI Agent 入门：Anthropic 官方指南笔记"/></a><div class="content"><a class="title" href="/2026/04/08/ai-agent-notes/" title="AI Agent 入门：Anthropic 官方指南笔记">AI Agent 入门：Anthropic 官方指南笔记</a><time datetime="2026-04-07T16:00:00.000Z" title="发表于 2026-04-08 00:00:00">2026-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/02/network-protocols/" title="网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN"><img src="/covers/cover-sword-cold.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN"/></a><div class="content"><a class="title" href="/2026/04/02/network-protocols/" title="网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN">网络协议入门：HTTP、TCP/IP、DNS、SSH、FTP、SMTP、VPN</a><time datetime="2026-04-02T02:48:00.000Z" title="发表于 2026-04-02 10:48:00">2026-04-02</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By hua2003-liu</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
